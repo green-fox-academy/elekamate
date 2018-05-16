@@ -44,7 +44,7 @@ namespace Practice_05_WriteMultipleLines
                 }
                 sw.Dispose();
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 Console.WriteLine("File not found.");
             }
