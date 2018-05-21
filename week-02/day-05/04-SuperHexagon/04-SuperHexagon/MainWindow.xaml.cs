@@ -20,7 +20,6 @@ namespace _04_SuperHexagon
 
             int textureSideSize = 4;
             int textureDiagonalSize = textureSideSize * 2 - 1;
-            int actualNumberOfHexagons= textureDiagonalSize;
             double textureStartingPointX = 400;
             double textureStartingPointY = 25;
             double hexagonSideSize = 15;
@@ -33,10 +32,36 @@ namespace _04_SuperHexagon
             (
                 textureStartingPointX,
                 textureStartingPointY,
-                actualNumberOfHexagons,
+                textureDiagonalSize,
                 hexagonSideSize,
                 hexagonHeight
             );
+
+            // Now let`s draw the side columns as well
+            int i_StartIndexToDrawTextureSides = textureDiagonalSize - 1;
+            for (int i = i_StartIndexToDrawTextureSides; i > textureSideSize-1; i--)
+            {
+                
+                DrawPolygonColumn
+                (
+                    textureStartingPointX+ hexagonSideSize*1.5 - (textureDiagonalSize + 1-i) * hexagonSideSize*1.5,
+                    textureStartingPointY- hexagonHeight /2+ (textureDiagonalSize + 1 - i) * hexagonHeight/2,
+                    i,
+                    hexagonSideSize,
+                    hexagonHeight
+                );
+
+
+                DrawPolygonColumn
+                (
+                    textureStartingPointX- hexagonSideSize*1.5 + (textureDiagonalSize + 1 - i) * hexagonSideSize*1.5,
+                    textureStartingPointY- hexagonHeight /2+ (textureDiagonalSize + 1 - i) * hexagonHeight / 2,
+                    i,
+                    hexagonSideSize,
+                    hexagonHeight
+                );
+            }
+            
         }
 
 
