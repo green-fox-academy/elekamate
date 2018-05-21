@@ -14,11 +14,11 @@ namespace _04_SuperHexagon
             // texture - is the final shape,  which is the group of many hexagons
             // textreSideSize - one side of the texture contains this many hexagons
             // textureStartingPoint - the middle point of the lowest side of the lowest hexagon
-            int textureSideSize = 4;
+            int textureSideSize = 5;
             int textureDiagonalSize = textureSideSize * 2 - 1;
             double textureStartingPointX = 400;
             double textureStartingPointY = 25;
-            double hexagonSideSize = 15;
+            double hexagonSideSize = 25;
             double hexagonHeight = hexagonSideSize / 2 * Math.Sqrt(3) * 2;
             int i_StartIndexToDrawTextureSides = textureDiagonalSize - 1;
 
