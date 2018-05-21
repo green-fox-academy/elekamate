@@ -5,7 +5,6 @@ using FoxDrawNameSpace;
 
 namespace _02_Triangles
 {
-
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -14,8 +13,8 @@ namespace _02_Triangles
             var foxDraw = new FoxDraw(canvas);
             var points = new List<Point>();
 
-            double triangleWidth = 20;
-            double triangleHeight = 16;
+            double triangleWidth = 25;
+            double triangleHeight = 30;
             int patternMaxTrianglesInALine = 10;
             int patternActualTrianglesInALine = patternMaxTrianglesInALine;
 
@@ -37,8 +36,6 @@ namespace _02_Triangles
             {
                 for (int i = 0 ; i < patternActualTrianglesInALine; i++)
                 {
-                    
-
                     points.Clear();
                     points.Add(new Point(triangleP1X, triangleP1Y));
                     points.Add(new Point(triangleP2X, triangleP2Y));
@@ -59,8 +56,6 @@ namespace _02_Triangles
                 triangleP3Y -= triangleHeight;
                 patternActualTrianglesInALine -= 1;
             }
-            
-
         }
     }
 
