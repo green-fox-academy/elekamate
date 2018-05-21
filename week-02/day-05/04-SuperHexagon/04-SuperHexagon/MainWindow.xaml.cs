@@ -12,7 +12,7 @@ namespace _04_SuperHexagon
         public MainWindow()
         {
             InitializeComponent();
-            var foxDraw = new FoxDraw(canvas);
+            
 
             // texture - is the final shape,  which is the group of many hexagons
             // textreSideSize - one side of the texture contains this many hexagons
@@ -24,19 +24,25 @@ namespace _04_SuperHexagon
             double textureStartingPointX = 400;
             double textureStartingPointY = 25;
             double hexagonSideSize = 15;
-            double hexagonHeight = hexagonSideSize / 2 * Math.Sqrt(3);
+            double hexagonHeight = hexagonSideSize / 2 * Math.Sqrt(3) * 2;
 
 
 
             // First step draw middle diagonal
-            
+            DrawPolygonColumn
+            (
+                textureStartingPointX,
+                textureStartingPointY,
+                actualNumberOfHexagons,
+                hexagonSideSize,
+                hexagonHeight
+            );
         }
 
 
 
-        public static void DrawPolygonColumn
+        public void DrawPolygonColumn
         (
-            FoxDraw foxDraw,
             double argTextureStartingPointX,
             double argTextureStartingPointY,
             int argNumberOfHexagons,
@@ -45,18 +51,22 @@ namespace _04_SuperHexagon
         )
         {
 
+            for (int i = 0; i < argNumberOfHexagons; i++)
+            {
+                var foxDraw = new FoxDraw(canvas);
 
-            var points = new List<Point>();
-            points.Add(new Point(argTextureStartingPointX- argHexagonSideSize/2, argTextureStartingPointY));
-            points.Add(new Point(argTextureStartingPointX - argHexagonSideSize, argTextureStartingPointY- hexagonHeight));
-            points.Add(new Point(argTextureStartingPointX - argHexagonSideSize/2, argTextureStartingPointY- hexagonHeight));
-            points.Add(new Point(argTextureStartingPointX - argHexagonSideSize, argTextureStartingPointY - hexagonHeight));
-            points.Add(new Point(argTextureStartingPointX - argHexagonSideSize, argTextureStartingPointY - hexagonHeight));
-            points.Add(new Point(argTextureStartingPointX - argHexagonSideSize, argTextureStartingPointY - hexagonHeight));
+                var points = new List<Point>();
+                points.Add(new Point(argTextureStartingPointX - argHexagonSideSize / 2, i * hexagonHeight+argTextureStartingPointY));
+                points.Add(new Point(argTextureStartingPointX - argHexagonSideSize, i * hexagonHeight + argTextureStartingPointY + hexagonHeight / 2));
+                points.Add(new Point(argTextureStartingPointX - argHexagonSideSize / 2, i * hexagonHeight + argTextureStartingPointY + hexagonHeight));
+                points.Add(new Point(argTextureStartingPointX + argHexagonSideSize / 2, i * hexagonHeight + argTextureStartingPointY + hexagonHeight));
+                points.Add(new Point(argTextureStartingPointX + argHexagonSideSize, i * hexagonHeight + argTextureStartingPointY + hexagonHeight / 2));
+                points.Add(new Point(argTextureStartingPointX + argHexagonSideSize / 2, i * hexagonHeight + argTextureStartingPointY));
 
-
-            foxDraw.FillColor(Colors.Green);
-            foxDraw.DrawPolygon(points);
+                foxDraw.FillColor(Colors.Green);
+                foxDraw.DrawPolygon(points);
+            }
+            
         }
     }
 
