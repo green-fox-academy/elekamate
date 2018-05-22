@@ -11,11 +11,9 @@ namespace Exercise_01_CopyFiles
     {
         static void Main(string[] args)
         {
-
             // Write a function that reads all lines of a file and writes the read lines to an other file (a.k.a copies the file)
             // It should take the filenames as parameters
             // It should return a boolean that shows if the copy was successful
-
             string filePath_Copy = @"C:\Users\eleka_000\OneDrive\Documents\Repositories\greenfox\elekamate\week-02\day-03\Practice-02-PrintEachLine\Practice-02-PrintEachLine\my-file.txt";
             string filePath_Paste = @"C:\Users\eleka_000\OneDrive\Documents\Repositories\greenfox\elekamate\week-02\day-03\Practice-02-PrintEachLine\Practice-02-PrintEachLine\copyTo.txt";
 
@@ -27,8 +25,6 @@ namespace Exercise_01_CopyFiles
             {
                 Console.WriteLine("Unsuccessful run.");
             }
-
-            
             Console.ReadKey();
         }
 
@@ -48,10 +44,8 @@ namespace Exercise_01_CopyFiles
             }
             catch (Exception)
             {
-
                 return false;
             }
-            
         }
     }
 }
