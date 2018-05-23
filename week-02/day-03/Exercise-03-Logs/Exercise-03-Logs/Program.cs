@@ -9,6 +9,8 @@ namespace Exercise_03_Logs
 {
     class Program
     {
+        public string[] LogArray { get; private set; }
+
         static void Main(string[] args)
         {
             // Read all data from 'log.txt'.
@@ -16,10 +18,9 @@ namespace Exercise_03_Logs
             // Write a function that returns an array with the unique IP adresses.
             // Write a function that returns the GET / POST request ratio.
             string pathLogsTxt = @"C:\Users\eleka_000\OneDrive\Documents\Repositories\greenfox\elekamate\week-02\day-03\Exercise-03-Logs\Exercise-03-Logs\logs.txt";
-            
-            string[] logArray;
             string[] actualLineArray;
             Dictionary<string,string> dictLogIPs = new Dictionary<string,string>();
+            string[] logArray=null;
             string[] arrayLogIPs;
             int arrayLogIPIndexCounter = -1;
             int logID = 0;
@@ -28,33 +29,40 @@ namespace Exercise_03_Logs
             int POSTCounter = 0;
             double getPostRatio = 0;
             string actualIP = "";
+
+            ImportLogData(pathLogsTxt);
             
 
-            logArray = File.ReadAllLines(pathLogsTxt);
-
-            for (int iCreatingDictFromTxt = 0; iCreatingDictFromTxt < logArray.Length; iCreatingDictFromTxt++)
+            try
             {
-                logID += 1;
-                actualLineArray=logArray[iCreatingDictFromTxt].Split();
-                actualGetOrPost = actualLineArray[11];
-                actualIP = actualLineArray[8];
+                for (int iCreatingDictFromTxt = 0; iCreatingDictFromTxt < logArray.Length; iCreatingDictFromTxt++)
+                {
+                    logID += 1;
+                    actualLineArray = logArray[iCreatingDictFromTxt].Split();
+                    actualGetOrPost = actualLineArray[11];
+                    actualIP = actualLineArray[8];
 
-                if (dictLogIPs.ContainsKey(actualIP)==false)
-                {
-                    dictLogIPs.Add(actualIP, "");
-                }
-                
-                if (actualGetOrPost=="GET")
-                {
-                    GETCounter += 1;
-                }
-                if (actualGetOrPost=="POST")
-                {
-                    POSTCounter += 1;
+                    if (dictLogIPs.ContainsKey(actualIP) == false)
+                    {
+                        dictLogIPs.Add(actualIP, "");
+                    }
+
+                    if (actualGetOrPost == "GET")
+                    {
+                        GETCounter += 1;
+                    }
+                    if (actualGetOrPost == "POST")
+                    {
+                        POSTCounter += 1;
+                    }
                 }
             }
-            getPostRatio = (double) GETCounter / (double)POSTCounter;
+            catch (Exception)
+            {
+                Console.WriteLine("There is problem with the data, wrong data type in wrong field.");
+            }
 
+            getPostRatio = (double) GETCounter / (double)POSTCounter;
             arrayLogIPs = new string[dictLogIPs.Count];
 
             foreach (var xKey in dictLogIPs.Keys)
@@ -64,6 +72,18 @@ namespace Exercise_03_Logs
             }
             Console.WriteLine("GET/POST ratio: " + getPostRatio);
             Console.ReadKey();
+        }
+
+        private void ImportLogData(string argPathLogsTxt)
+        {
+            try
+            {
+                logArray = File.ReadAllLines(argPathLogsTxt);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Cannot open file.");
+            }
         }
     }
 }
