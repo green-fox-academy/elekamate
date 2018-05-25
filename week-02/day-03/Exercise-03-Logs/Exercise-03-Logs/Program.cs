@@ -9,8 +9,6 @@ namespace Exercise_03_Logs
 {
     class Program
     {
-        public string[] LogArray { get; private set; }
-
         static void Main(string[] args)
         {
             // Read all data from 'log.txt'.
@@ -30,8 +28,7 @@ namespace Exercise_03_Logs
             double getPostRatio = 0;
             string actualIP = "";
 
-            ImportLogData(pathLogsTxt);
-            
+            logArray=ImportLogData(pathLogsTxt);
 
             try
             {
@@ -74,15 +71,19 @@ namespace Exercise_03_Logs
             Console.ReadKey();
         }
 
-        private void ImportLogData(string argPathLogsTxt)
+        private static  string[] ImportLogData(string argPathLogsTxt)
         {
+            string[] TempLogArray;
+
             try
             {
-                logArray = File.ReadAllLines(argPathLogsTxt);
+                TempLogArray = File.ReadAllLines(argPathLogsTxt);
+                return TempLogArray;
             }
             catch (Exception)
             {
                 Console.WriteLine("Cannot open file.");
+                return new string[0];
             }
         }
     }
