@@ -13,11 +13,7 @@ namespace _01_Triangles
             InitializeComponent();
             var foxDraw = new FoxDraw(canvas);
             var points = new List<Point>();
-            var trianglePositionNames = new List<string>();
-
-            trianglePositionNames.Add("Left");
-            trianglePositionNames.Add("Right");
-            trianglePositionNames.Add("Bottom");
+            
 
 
             // Drawing big triangle
@@ -80,33 +76,25 @@ namespace _01_Triangles
             var foxDraw = new FoxDraw(canvas);
             var tempPoints = new List<Point>();
 
+            var trianglePositionNames = new List<string>();
+            trianglePositionNames.Add("Left");
+            trianglePositionNames.Add("Right");
+            trianglePositionNames.Add("Bottom");
+
             CalcRelativeTrianglePoints(argPoints, "Left");
 
 
-            if (Math.Abs(triangle1P2X- triangle1P3X) > 3)
+            if (Math.Abs(argPoints[1].X - argPoints[2].X) > 3)
             {
-                
-
-                tempPoints.Clear();
-                tempPoints = CalcRelativeTrianglePoints(argPoints,"Left");
-                foxDraw.FillColor(Colors.White);
-                foxDraw.StrokeColor(Colors.Black);
-                foxDraw.DrawPolygon(tempPoints);
-                DrawTrinaglesIntoTriangles(tempPoints);
-
-                tempPoints.Clear();
-                tempPoints = CalcRelativeTrianglePoints(argPoints, "Right");
-                foxDraw.FillColor(Colors.White);
-                foxDraw.StrokeColor(Colors.Black);
-                foxDraw.DrawPolygon(tempPoints);
-                DrawTrinaglesIntoTriangles(tempPoints);
-
-                tempPoints.Clear();
-                tempPoints = CalcRelativeTrianglePoints(argPoints, "Bottom");
-                foxDraw.FillColor(Colors.White);
-                foxDraw.StrokeColor(Colors.Black);
-                foxDraw.DrawPolygon(tempPoints);
-                DrawTrinaglesIntoTriangles(tempPoints);
+                foreach (var xItem in trianglePositionNames)
+                {
+                    tempPoints.Clear();
+                    tempPoints = CalcRelativeTrianglePoints(argPoints, xItem);
+                    foxDraw.FillColor(Colors.White);
+                    foxDraw.StrokeColor(Colors.Black);
+                    foxDraw.DrawPolygon(tempPoints);
+                    DrawTrinaglesIntoTriangles(tempPoints);
+                }
             } 
         }
 
