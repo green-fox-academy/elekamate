@@ -6,74 +6,92 @@ using FoxDrawNameSpace;
 
 namespace _01_Triangles
 {
+       //          point[0]
+       //             /\
+       //            /  \
+       //           /    \
+       //point[2]  --------  point[1]
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
             var foxDraw = new FoxDraw(canvas);
-            var points = new List<Point>();
-            
+            var triangleOriginalPoints = new List<Point>();
+            var triangleSecondPoints = new List<Point>();
 
+            Dictionary<string,double> triangleOriginalParameters = new Dictionary<string,double>();
 
-            // Drawing big triangle
-            double triangleOriginalWidth = 300;
+            triangleOriginalParameters.Add("triangleOriginalWidth", 300);
+            triangleOriginalParameters.Add("triangleOriginalIndent", 25);
+
+            triangleOriginalPoints = CalcTriangleOriginalPoints(triangleOriginalParameters);
+            DrawTrinangle(triangleOriginalPoints);
+
+            triangleSecondPoints = CalcTriangleSecondPoints(triangleOriginalPoints);
+            DrawTrinangle(triangleSecondPoints);
+
+            DrawTrinaglesIntoTriangles(triangleSecondPoints);
+        }
+
+        private List<Point> CalcTriangleSecondPoints(List<Point> argTriangleOriginalPoints)
+        {
+            var triangleSecondPoints = new List<Point>();
+
+            double triangleSecondP0X = (argTriangleOriginalPoints[1].X > argTriangleOriginalPoints[0].X) ?
+                argTriangleOriginalPoints[0].X + (argTriangleOriginalPoints[1].X - argTriangleOriginalPoints[0].X) / 2 :
+                argTriangleOriginalPoints[1].X + (argTriangleOriginalPoints[0].X - argTriangleOriginalPoints[1].X) / 2;
+
+            double triangleSecondP0Y = (argTriangleOriginalPoints[1].Y > argTriangleOriginalPoints[0].Y) ?
+                argTriangleOriginalPoints[0].Y + (argTriangleOriginalPoints[1].Y - argTriangleOriginalPoints[0].Y) / 2 :
+                argTriangleOriginalPoints[1].Y + (argTriangleOriginalPoints[0].Y - argTriangleOriginalPoints[1].Y) / 2;
+
+            double triangleSecondP1X = (argTriangleOriginalPoints[1].X > argTriangleOriginalPoints[2].X) ?
+                argTriangleOriginalPoints[2].X + (argTriangleOriginalPoints[1].X - argTriangleOriginalPoints[2].X) / 2 :
+                argTriangleOriginalPoints[1].X + (argTriangleOriginalPoints[2].X - argTriangleOriginalPoints[1].X) / 2;
+
+            double triangleSecondP1Y = (argTriangleOriginalPoints[2].Y > argTriangleOriginalPoints[1].Y) ?
+                argTriangleOriginalPoints[1].Y + (argTriangleOriginalPoints[2].Y - argTriangleOriginalPoints[1].Y) / 2 :
+                argTriangleOriginalPoints[2].Y + (argTriangleOriginalPoints[1].Y - argTriangleOriginalPoints[2].Y) / 2;
+
+            double triangleSecondP2X = (argTriangleOriginalPoints[2].X > argTriangleOriginalPoints[0].X) ?
+                argTriangleOriginalPoints[0].X + (argTriangleOriginalPoints[2].X - argTriangleOriginalPoints[0].X) / 2 :
+                argTriangleOriginalPoints[2].X + (argTriangleOriginalPoints[0].X - argTriangleOriginalPoints[2].X) / 2;
+
+            double triangleSecondP2Y = (argTriangleOriginalPoints[0].Y > argTriangleOriginalPoints[2].Y) ?
+                argTriangleOriginalPoints[2].Y + (argTriangleOriginalPoints[0].Y - argTriangleOriginalPoints[2].Y) / 2 :
+                argTriangleOriginalPoints[0].Y + (argTriangleOriginalPoints[2].Y - argTriangleOriginalPoints[0].Y) / 2;
+
+            triangleSecondPoints.Add(new Point(triangleSecondP0X, triangleSecondP0Y));
+            triangleSecondPoints.Add(new Point(triangleSecondP1X, triangleSecondP1Y));
+            triangleSecondPoints.Add(new Point(triangleSecondP2X, triangleSecondP2Y));
+
+            return triangleSecondPoints;
+        }
+
+        private List<Point> CalcTriangleOriginalPoints(Dictionary<string, double> triangleOriginalParameters)
+        {
+            List<Point> points = new List<Point>();
+
+            double triangleOriginalIndent = triangleOriginalParameters["triangleOriginalIndent"];
+            double triangleOriginalWidth = triangleOriginalParameters["triangleOriginalWidth"];
             double triangleOriginalHeight = CalcTriangleHeight(triangleOriginalWidth);
-            double triangleOriginalIndent = 25;
 
-            double triangleOriginalP1X = triangleOriginalIndent;
+            double triangleOriginalP0X = triangleOriginalIndent;
+            double triangleOriginalP0Y = triangleOriginalIndent;
+            double triangleOriginalP1X = triangleOriginalP0X + triangleOriginalWidth;
             double triangleOriginalP1Y = triangleOriginalIndent;
-            double triangleOriginalP2X = triangleOriginalP1X + triangleOriginalWidth;
-            double triangleOriginalP2Y = triangleOriginalIndent;
-            double triangleOriginalP3X = triangleOriginalIndent + triangleOriginalWidth / 2;
-            double triangleOriginalP3Y = triangleOriginalIndent + triangleOriginalHeight;
+            double triangleOriginalP2X = triangleOriginalIndent + triangleOriginalWidth / 2;
+            double triangleOriginalP2Y = triangleOriginalIndent + triangleOriginalHeight;
 
-            points.Clear();
+            points.Add(new Point(triangleOriginalP0X, triangleOriginalP0Y));
             points.Add(new Point(triangleOriginalP1X, triangleOriginalP1Y));
             points.Add(new Point(triangleOriginalP2X, triangleOriginalP2Y));
-            points.Add(new Point(triangleOriginalP3X, triangleOriginalP3Y));
-            foxDraw.FillColor(Colors.Green);
-            foxDraw.StrokeColor(Colors.Black);
-            foxDraw.DrawPolygon(points);
-
-            double triangleP1X = (points[1].X > points[0].X) ?
-                points[0].X + (points[1].X - points[0].X) / 2 :
-                points[1].X + (points[0].X - points[1].X) / 2;
-
-            double triangleP1Y = (points[1].Y > points[0].Y) ?
-                points[0].Y + (points[1].Y - points[0].Y) / 2 :
-                points[1].Y + (points[0].Y - points[1].Y) / 2;
-
-            double triangleP2X = (points[1].X > points[2].X) ?
-                points[2].X + (points[1].X - points[2].X) / 2 :
-                points[1].X + (points[2].X - points[1].X) / 2;
-
-            double triangleP2Y = (points[2].Y > points[1].Y) ?
-                points[1].Y + (points[2].Y - points[1].Y) / 2 :
-                points[2].Y + (points[1].Y - points[2].Y) / 2;
-
-            double triangleP3X = (points[2].X > points[0].X) ?
-                points[0].X + (points[2].X - points[0].X) / 2 :
-                points[2].X + (points[0].X - points[2].X) / 2;
-
-            double triangleP3Y = (points[0].Y > points[2].Y) ?
-                points[2].Y + (points[0].Y - points[2].Y) / 2 :
-                points[0].Y + (points[2].Y - points[0].Y) / 2;
-
-            points.Clear();
-            points.Add(new Point(triangleP1X, triangleP1Y));
-            points.Add(new Point(triangleP2X, triangleP2Y));
-            points.Add(new Point(triangleP3X, triangleP3Y));
-            foxDraw.FillColor(Colors.White);
-            foxDraw.StrokeColor(Colors.Black);
-            foxDraw.DrawPolygon(points);
-
-            DrawTrinaglesIntoTriangles(points);
+            return points;
         }
 
         private void DrawTrinaglesIntoTriangles(List<Point> argPoints)
         {
-            var foxDraw = new FoxDraw(canvas);
             var tempPoints = new List<Point>();
 
             var trianglePositionNames = new List<string>();
@@ -81,24 +99,19 @@ namespace _01_Triangles
             trianglePositionNames.Add("Right");
             trianglePositionNames.Add("Bottom");
 
-            CalcRelativeTrianglePoints(argPoints, "Left");
-
-
             if (Math.Abs(argPoints[1].X - argPoints[2].X) > 3)
             {
                 foreach (var xItem in trianglePositionNames)
                 {
                     tempPoints.Clear();
-                    tempPoints = CalcRelativeTrianglePoints(argPoints, xItem);
-                    foxDraw.FillColor(Colors.White);
-                    foxDraw.StrokeColor(Colors.Black);
-                    foxDraw.DrawPolygon(tempPoints);
+                    tempPoints = CalcTriangleRelativePoints(argPoints, xItem);
+                    DrawTrinangle(tempPoints);
                     DrawTrinaglesIntoTriangles(tempPoints);
                 }
             } 
         }
 
-        private List<Point> CalcRelativeTrianglePoints(List<Point> argPoints, string argSideToDraw)
+        private List<Point> CalcTriangleRelativePoints(List<Point> argPoints, string argSideToDraw)
         {
             double triangleOriginalWidth = argPoints[1].X-argPoints[2].X;
             double triangleOriginalHeight = CalcTriangleHeight(triangleOriginalWidth);
@@ -156,11 +169,11 @@ namespace _01_Triangles
         private void DrawTrinangle(List<Point> argPoints)
         {
             var foxDraw = new FoxDraw(canvas);
-            var points = new List<Point>();
 
             foxDraw.FillColor(Colors.White);
             foxDraw.StrokeColor(Colors.Black);
-            foxDraw.DrawPolygon(points);
+            foxDraw.DrawPolygon(argPoints);
         }
+
     }
 }
