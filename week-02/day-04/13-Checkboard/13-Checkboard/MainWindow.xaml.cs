@@ -6,7 +6,6 @@ using FoxDrawNameSpace;
 
 namespace _13_Checkboard
 {
-
     public partial class MainWindow : Window
     {
         decimal checkboardFieldSize=10m;
@@ -31,14 +30,9 @@ namespace _13_Checkboard
 
         public int CalculatingCheckboardFieldsInOneRow(decimal argCheckboardFieldSize)
         {
-            if (canvas.Height < canvas.Width)
-            {
-                return (int) Math.Floor((decimal)canvas.Height / argCheckboardFieldSize);
-            }
-            else
-            {
-                return (int) Math.Floor((decimal)canvas.Width / argCheckboardFieldSize);
-            }
+            decimal canvasSizeOfSmallerSide = (canvas.Height < canvas.Width) ? (decimal) canvas.Height : (decimal) canvas.Width;
+
+            return (int) Math.Floor(canvasSizeOfSmallerSide / argCheckboardFieldSize);
         }
 
         public void CreatingCheckboard(int argCheckboardFieldsInOneRow)
@@ -63,33 +57,19 @@ namespace _13_Checkboard
 
         private Color SettingStartingColorForNextRow(Color actualColor)
         {
+            Color colorToReturn = actualColor;
+
             if (checkboardFieldsInOneRow % 2 == 0)
             {
-                if (actualColor == checkboardTableColor1)
-                {
-                    return checkboardTableColor2;
-                }
-                else
-                {
-                    return checkboardTableColor1;
-                }
+                colorToReturn = (actualColor == checkboardTableColor1) ? checkboardTableColor2 : checkboardTableColor1;
             }
-            else
-            {
-                return actualColor;
-            }
+
+            return colorToReturn;
         }
 
         private Color ChangingFieldColor(Color argactualColor)
         {
-            if (argactualColor == checkboardTableColor1)
-            {
-                return checkboardTableColor2;
-            }
-            else
-            {
-                return checkboardTableColor1;
-            }
+            return (argactualColor == checkboardTableColor1) ? checkboardTableColor2 : checkboardTableColor1;
         }
 
         private void DrawingOneCheckboardField(int argi, int argj, Color argActualColor)
@@ -107,5 +87,6 @@ namespace _13_Checkboard
                 (double)checkboardFieldSize
             );
         }
+
     }
 }
