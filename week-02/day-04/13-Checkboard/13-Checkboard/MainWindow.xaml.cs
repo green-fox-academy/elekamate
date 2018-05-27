@@ -8,83 +8,58 @@ namespace _13_Checkboard
 {
     public partial class MainWindow : Window
     {
-        decimal checkboardFieldSize=10m;
-        int checkboardFieldsInOneRow=0;
-
-        decimal actualRectangleStartXPosition = 0;
-        decimal actualRectangleStartYPosition = 0;
-
-        Color checkboardTableColor1 = Colors.Black;
-        Color checkboardTableColor2 = Colors.White;
-
         public MainWindow()
         {
+            decimal checkboardFieldSize = 10m;
+            int checkboardFieldsInOneRow = 0;
+
+            List<Color> fieldColors = new List<Color>();
+            fieldColors.Add(Colors.Black);
+            fieldColors.Add(Colors.White);
+            Color actualColor = fieldColors[0];
+
             InitializeComponent();
 
-            // Calculating how many fields should be in row by checking the size of the canvas
-            checkboardFieldsInOneRow = CalculatingCheckboardFieldsInOneRow(checkboardFieldSize);
-
-            // Drawing the board from scratch
-            CreatingCheckboard(checkboardFieldsInOneRow);
-        }
-
-        public int CalculatingCheckboardFieldsInOneRow(decimal argCheckboardFieldSize)
-        {
-            decimal canvasSizeOfSmallerSide = (canvas.Height < canvas.Width) ? (decimal) canvas.Height : (decimal) canvas.Width;
-
-            return (int) Math.Floor(canvasSizeOfSmallerSide / argCheckboardFieldSize);
-        }
-
-        public void CreatingCheckboard(int argCheckboardFieldsInOneRow)
-        {
-            Color actualColor = checkboardTableColor1;
+            checkboardFieldsInOneRow = CalcCheckboardFieldsInOneRow(checkboardFieldSize);
 
             for (int i = 0; i < checkboardFieldsInOneRow; i++)
             {
                 for (int j = 0; j < checkboardFieldsInOneRow; j++)
                 {
-                    DrawingOneCheckboardField(i, j, actualColor);
-                    // Changing color without conditions.
-                    actualColor = ChangingFieldColor(actualColor);
+                    DrawOneCheckboardField(i, j, actualColor, checkboardFieldSize);
+                    actualColor = ChangFieldColor(actualColor, fieldColors);
                 }
-                // The first rectangle color of the next row depends on 
-                // the number of fields in one row: even or odd number.
-                // even number: next row starts with the same color, the prev ended
-                // odd number: next row starts with the different color, the prev ended
-                actualColor = SettingStartingColorForNextRow(actualColor);
+
+                if (checkboardFieldsInOneRow % 2 == 0)
+                {
+                    ChangFieldColor(actualColor, fieldColors);
+                }
             }
         }
 
-        private Color SettingStartingColorForNextRow(Color actualColor)
+        public int CalcCheckboardFieldsInOneRow(decimal argCheckboardFieldSize)
         {
-            Color colorToReturn = actualColor;
-
-            if (checkboardFieldsInOneRow % 2 == 0)
-            {
-                colorToReturn = (actualColor == checkboardTableColor1) ? checkboardTableColor2 : checkboardTableColor1;
-            }
-
-            return colorToReturn;
+            decimal canvasSizeOfSmallerSide = (canvas.Height < canvas.Width) ? (decimal) canvas.Height : (decimal) canvas.Width;
+            return (int) Math.Floor(canvasSizeOfSmallerSide / argCheckboardFieldSize);
         }
 
-        private Color ChangingFieldColor(Color argactualColor)
+        private Color ChangFieldColor(Color argactualColor, List<Color> argfieldColors)
         {
-            return (argactualColor == checkboardTableColor1) ? checkboardTableColor2 : checkboardTableColor1;
+            return (argactualColor == argfieldColors[0]) ? argfieldColors[1] : argfieldColors[0];
         }
 
-        private void DrawingOneCheckboardField(int argi, int argj, Color argActualColor)
+        private void DrawOneCheckboardField(int argi, int argj, Color argActualColor, decimal argcheckboardFieldSize)
         {
-            // First cycle is 0, so it will start from (0, 0) point.
-            actualRectangleStartXPosition = argi * checkboardFieldSize;
-            actualRectangleStartYPosition = argj * checkboardFieldSize;
+            decimal actualRectangleStartXPosition = argi * argcheckboardFieldSize;
+            decimal actualRectangleStartYPosition = argj * argcheckboardFieldSize;
 
             var foxDraw = new FoxDraw(canvas);
             foxDraw.FillColor(argActualColor);
             foxDraw.DrawRectangle(
                 (double)actualRectangleStartXPosition,
                 (double)actualRectangleStartYPosition,
-                (double)checkboardFieldSize,
-                (double)checkboardFieldSize
+                (double)argcheckboardFieldSize,
+                (double)argcheckboardFieldSize
             );
         }
 
