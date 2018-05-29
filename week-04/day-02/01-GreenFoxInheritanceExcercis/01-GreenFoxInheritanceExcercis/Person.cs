@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace _01_GreenFoxInheritanceExcercis
 {
-    class Person
+    public class Person
     {
         private int age;
         private string gender;
+
         public string Name { get; set; }
 
         public int Age
@@ -18,7 +19,7 @@ namespace _01_GreenFoxInheritanceExcercis
 
             set
             {
-                if (value < 1 || value < 150)
+                if (value < 1 || value > 150)
                 {
                     Console.WriteLine("Invalid age.");
                 }
@@ -59,12 +60,12 @@ namespace _01_GreenFoxInheritanceExcercis
             this.Gender = "female";
         }
 
-        public void Introduce()
+        public virtual void Introduce()
         {
             Console.WriteLine($"Hi, I'm {Name}, a {Age} year old {Gender}.");
         }
 
-        public void GetGoal()
+        public virtual void GetGoal()
         {
             Console.WriteLine("My goal is: Live for the moment!");
         }

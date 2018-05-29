@@ -22,7 +22,7 @@ namespace _01_GreenFoxInheritanceExcercis
 
         public Mentor(string name, int age, string gender, string level)
         {
-            Name=name;
+            Name = name;
             Age = age;
             Gender = gender;
             Level = level;
