@@ -9,11 +9,13 @@ namespace _01_GreenFoxInheritanceExcercis
     class Student : Person
     {
         public int SkippedDays { get; set; }
+
         public string PreviousOrganization { get; set; }
 
-        public Student(name, age, gender, previousOrganization)
+        public Student(string name, int age, string gender, string previousOrganization) 
+            : base(name,age,gender)
         {
-            skippedDays = 0;
+            SkippedDays = 0;
         }
 
         public Student()
@@ -23,19 +25,15 @@ namespace _01_GreenFoxInheritanceExcercis
             Gender = "female";
             PreviousOrganization = "The School of Life";
             SkippedDays = 0;
-            
-
-
-            sets name to Jane Doe, age to 30, gender to female, previousOrganization to The School of Life, skippedDays to 0
         }
 
 
-        public GetGoal()
+        public override void GetGoal()
         {
             Console.WriteLine("Be a junior software developer.");
         }
 
-        public Introduce()
+        public void Introduce()
         {
             Console.WriteLine("Hi, I'm name, a age year old gender from previousOrganization who skipped skippedDays days from the course already.");
         }
@@ -44,5 +42,6 @@ namespace _01_GreenFoxInheritanceExcercis
         {
             skippedDays += numberOfDays;
         }
+
     }
 }
