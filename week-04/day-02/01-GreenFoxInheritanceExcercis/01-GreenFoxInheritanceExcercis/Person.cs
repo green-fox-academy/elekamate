@@ -10,9 +10,8 @@ namespace _01_GreenFoxInheritanceExcercis
     {
         private int age;
         private string gender;
-
-
         public string Name { get; set; }
+
         public int Age
         {
             get{ return age; }
@@ -63,6 +62,12 @@ namespace _01_GreenFoxInheritanceExcercis
         public void Introduce()
         {
             Console.WriteLine($"Hi, I'm {Name}, a {Age} year old {Gender}.");
-        }  
+        }
+
+        public void GetGoal()
+        {
+            Console.WriteLine("My goal is: Live for the moment!");
+        }
+
     }
 }
