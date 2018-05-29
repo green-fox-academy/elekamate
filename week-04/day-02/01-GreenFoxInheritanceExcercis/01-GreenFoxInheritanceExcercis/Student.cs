@@ -8,13 +8,19 @@ namespace _01_GreenFoxInheritanceExcercis
 {
     class Student : Person
     {
+        // Properties
         public int SkippedDays { get; set; }
-
         public string PreviousOrganization { get; set; }
 
+        // Constructures
         public Student(string name, int age, string gender, string previousOrganization) 
             : base(name,age,gender)
         {
+            Name = name;
+            Age = age;
+            Gender = gender;
+            PreviousOrganization = previousOrganization;
+
             SkippedDays = 0;
         }
 
@@ -27,15 +33,17 @@ namespace _01_GreenFoxInheritanceExcercis
             SkippedDays = 0;
         }
 
-
+        // Methods
         public override void GetGoal()
         {
-            Console.WriteLine("Be a junior software developer.");
+            Console.WriteLine("My goal is: Be a junior software developer.");
         }
 
         public override void Introduce()
         {
-            Console.WriteLine("Hi, I'm name, a age year old gender from previousOrganization who skipped skippedDays days from the course already.");
+            Console.WriteLine($"Hi, I'm {Name}, a {Age} year old {Gender}" +
+                $" from {PreviousOrganization} who skipped {SkippedDays}" +
+                $" days from the course already.");
         }
 
         public void SkipDays(int numberOfDays)

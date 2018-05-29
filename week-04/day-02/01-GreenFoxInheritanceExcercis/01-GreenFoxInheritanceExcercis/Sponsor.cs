@@ -8,9 +8,11 @@ namespace _01_GreenFoxInheritanceExcercis
 {
     class Sponsor : Person
     {
+        // Properties
         private int HiredStudents { get; set; }
         private string Company { get; set; }
 
+        // Constructures
         public Sponsor()
         {
             Name = "Jane Doe";
@@ -29,6 +31,7 @@ namespace _01_GreenFoxInheritanceExcercis
             Company = company;
         }
 
+        // Methods
         public override void Introduce()
         {
             Console.WriteLine($"Hi, I'm {Name}, a {Age} year old gender who represents {Company} and hired {HiredStudents} students so far.");

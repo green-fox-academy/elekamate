@@ -8,10 +8,11 @@ namespace _01_GreenFoxInheritanceExcercis
 {
     class Mentor : Person
     {
+        // Fields
         private static List<string> levelValues = new List<string>();
-
         private string level;
 
+        // Constructures
         public Mentor()
         {
             Name = "Jane Doe";
@@ -28,6 +29,7 @@ namespace _01_GreenFoxInheritanceExcercis
             Level = level;
         }
 
+        // Property
         public string Level
         {
             get
@@ -46,6 +48,7 @@ namespace _01_GreenFoxInheritanceExcercis
             }
         }
 
+        // Methods
         public override void GetGoal()
         {
             Console.WriteLine("Educate brilliant junior software developers.");
@@ -62,5 +65,6 @@ namespace _01_GreenFoxInheritanceExcercis
             levelValues.Add("intermediate");
             levelValues.Add("senior");
         }
+
     }
 }

@@ -8,9 +8,11 @@ namespace _01_GreenFoxInheritanceExcercis
 {
     public class Person
     {
+        // Fields
         private int age;
         private string gender;
 
+        // Properties
         public string Name { get; set; }
 
         public int Age
@@ -46,6 +48,7 @@ namespace _01_GreenFoxInheritanceExcercis
             }
         }
 
+        // Construcures
         public Person(string name, int age, string gender)
         {
             Name = name;
@@ -60,6 +63,7 @@ namespace _01_GreenFoxInheritanceExcercis
             this.Gender = "female";
         }
 
+        // Methods
         public virtual void Introduce()
         {
             Console.WriteLine($"Hi, I'm {Name}, a {Age} year old {Gender}.");

@@ -55,5 +55,6 @@ namespace _01_GreenFoxInheritanceExcercis
 
             Console.ReadLine();
         }
+
     }
 }
