@@ -11,9 +11,10 @@ namespace _02_GardenExample
         // Fields
         private decimal waterAbsorvationPercentage;
 
-        public int WaterAmount { get; set; }
-        public int WaterNeedThreshold { get; set; }
-
+        // Properties
+        public decimal WaterAmount { get; set; }
+        public decimal WaterNeedThreshold { get; set; }
+        public string PlantColor { get; set; }
 
         public decimal WaterAbsorvationPercentage
         {
@@ -27,7 +28,16 @@ namespace _02_GardenExample
             }
         }
 
+        // Constructures
+        public Plant(string argPlantColor)
+        {
+            PlantColor = argPlantColor;
+        }
 
-
+        // Methods
+        public void Watering(int argWateringAmount)
+        {
+            WaterAmount += argWateringAmount * WaterAbsorvationPercentage;
+        }
     }
 }
