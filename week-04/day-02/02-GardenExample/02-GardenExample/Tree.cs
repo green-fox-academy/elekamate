@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace _02_GardenExample
 {
-    class Tree
+    class Tree : Plant
     {
+        // Constructors
+        public Tree()
+        {
+            WaterAbsorvationPercentage = 0.40m;
+            Garden.Trees.Add(this);
+        }
+
+        
     }
 }
