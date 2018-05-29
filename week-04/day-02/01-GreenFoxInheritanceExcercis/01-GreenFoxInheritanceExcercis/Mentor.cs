@@ -12,6 +12,25 @@ namespace _01_GreenFoxInheritanceExcercis
         private static List<string> levelValues = new List<string>();
         private string level;
 
+        // Properties
+        public string Level
+        {
+            get
+            {
+                return level;
+            }
+
+            set
+            {
+                levelValuesListFill();
+
+                if (levelValues.Contains(value) == true)
+                {
+                    level = value;
+                }
+            }
+        }
+
         // Constructures
         public Mentor()
         {
@@ -29,24 +48,7 @@ namespace _01_GreenFoxInheritanceExcercis
             Level = level;
         }
 
-        // Property
-        public string Level
-        {
-            get
-            {
-                return level;
-            }
-
-            set
-            {
-                levelValuesListFill();
-                
-                if (levelValues.Contains(value) == true)
-                {
-                    level = value;
-                }        
-            }
-        }
+        
 
         // Methods
         public override void GetGoal()

@@ -14,7 +14,6 @@ namespace _01_GreenFoxInheritanceExcercis
 
         // Properties
         public string Name { get; set; }
-
         public int Age
         {
             get{ return age; }
