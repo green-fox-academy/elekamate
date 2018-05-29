@@ -29,9 +29,10 @@ namespace _02_GardenExample
         }
 
         // Constructures
-        public Plant(string argPlantColor)
+        public Plant(string argPlantColor,int argWaterAmount)
         {
             PlantColor = argPlantColor;
+            WaterAmount = argWaterAmount;
         }
 
         // Methods
@@ -39,5 +40,6 @@ namespace _02_GardenExample
         {
             WaterAmount += argWateringAmount * WaterAbsorvationPercentage;
         }
+
     }
 }

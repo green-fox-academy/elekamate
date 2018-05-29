@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace _02_GardenExample
 {
-    class Flower
+    class Flower : Plant
     {
+        public Flower(string PlantColor) : base (PlantColor)
+        {
+            WaterAbsorvationPercentage = 0.75m;
+            Garden.Flowers.Add(this);
+        }
+
     }
 }
