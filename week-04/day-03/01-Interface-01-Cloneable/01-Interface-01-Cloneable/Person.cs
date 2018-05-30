@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_GreenFoxInheritanceExcercis
+namespace _01_Interface_01_Cloneable
 {
     public class Person
     {

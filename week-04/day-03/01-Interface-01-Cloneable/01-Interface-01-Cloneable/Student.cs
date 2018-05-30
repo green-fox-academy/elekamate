@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_GreenFoxInheritanceExcercis
+namespace _01_Interface_01_Cloneable
 {
-    class Student : Person
+    class Student : Person, ICloneable
     {
         // Properties
         public int SkippedDays { get; set; }
@@ -48,6 +48,11 @@ namespace _01_GreenFoxInheritanceExcercis
         public void SkipDays(int numberOfDays)
         {
             SkippedDays += numberOfDays;
+        }
+
+        public object Clone()
+        {
+            return new Student(this.Name,this.Age,this.Gender,this.PreviousOrganization);
         }
 
     }

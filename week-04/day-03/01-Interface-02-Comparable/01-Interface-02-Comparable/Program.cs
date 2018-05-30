@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_Interface_01_Cloneable
+namespace _01_Interface_02_Comparable
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Student studentJack = new Student("John", 20, "male", "BME");
-            Student studentJoe = studentJack.Clone() as Student;
-            Console.ReadLine();
+            Console.WriteLine("Hello World!");
+            Console.ReadKey();
         }
     }
 }
