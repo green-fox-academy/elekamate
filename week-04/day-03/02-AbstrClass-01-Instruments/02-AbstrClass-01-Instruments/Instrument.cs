@@ -9,7 +9,6 @@ namespace _02_AbstrClass_01_Instruments
     public abstract class Instrument
     {
         protected string name;
-
         abstract public void Play();
     }
 

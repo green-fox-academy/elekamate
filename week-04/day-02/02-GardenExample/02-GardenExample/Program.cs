@@ -10,14 +10,16 @@ namespace _02_GardenExample
     {
         static void Main(string[] args)
         {
+            Garden garden = new Garden();
             Flower yellowFlower = new Flower("yellow");
             Flower blueFlower = new Flower("blue");
-
             Tree purpleTree = new Tree("purple");
             Tree orangeTree = new Tree("orange");
 
+            garden.Watering(40);
+            garden.Watering(40);
 
-            Console.ReadKey();
+            Console.ReadLine();
         }
     }
 }

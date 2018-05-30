@@ -29,16 +29,16 @@ namespace _02_GardenExample
         }
 
         // Constructures
-        public Plant(string argPlantColor,int argWaterAmount)
+        public Plant(string argPlantColor)
         {
             PlantColor = argPlantColor;
-            WaterAmount = argWaterAmount;
+            WaterAmount = 0;
         }
 
         // Methods
-        public void Watering(int argWateringAmount)
+        public void Watering(double argWateringAmount)
         {
-            WaterAmount += argWateringAmount * WaterAbsorvationPercentage;
+            WaterAmount += (decimal) argWateringAmount * WaterAbsorvationPercentage;
         }
 
     }

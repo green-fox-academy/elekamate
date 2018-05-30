@@ -11,7 +11,8 @@ namespace _02_GardenExample
         public Flower(string PlantColor) : base (PlantColor)
         {
             WaterAbsorvationPercentage = 0.75m;
-            Garden.Flowers.Add(this);
+            WaterNeedThreshold = 5;
+            Garden.Plants.Add(this);
         }
 
     }
