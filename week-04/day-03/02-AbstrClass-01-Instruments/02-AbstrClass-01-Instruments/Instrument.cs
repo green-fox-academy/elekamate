@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _02_AbstrClass_01_Instruments
 {
-    abstract class Instrument
+    public abstract class Instrument
     {
         protected string name;
 

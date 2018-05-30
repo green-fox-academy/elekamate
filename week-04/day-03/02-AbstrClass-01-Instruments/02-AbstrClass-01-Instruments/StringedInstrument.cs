@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace _02_AbstrClass_01_Instruments
 {
-    abstract class StringedInstrument : Instrument
+    public abstract class StringedInstrument : Instrument
     {
-        int numberOfStrings;
+        protected string soundOfInstrument;
+        protected int numberOfStrings;
+        public void Sound()
+        {
+            Console.WriteLine($"{name}, a {numberOfStrings}-stringed instrument that {soundOfInstrument}"); 
+        }
 
-        abstract public void Sound();
     }
 }

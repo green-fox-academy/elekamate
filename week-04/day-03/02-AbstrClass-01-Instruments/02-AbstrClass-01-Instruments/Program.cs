@@ -27,6 +27,8 @@ namespace _02_AbstrClass_01_Instruments
             Console.WriteLine("Test 2 Play");
             guitar2.Play();
             bassGuitar2.Play();
+
+            Console.ReadLine();
         }
 
     }

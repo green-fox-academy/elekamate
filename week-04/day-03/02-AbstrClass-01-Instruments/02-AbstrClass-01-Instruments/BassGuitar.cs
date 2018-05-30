@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace _02_AbstrClass_01_Instruments
 {
-    class Violin : StringedInstrument
+    class BassGuitar : StringedInstrument
     {
-        public Violin()
+        public BassGuitar()
         {
-            name = "Violin";
+            name = "Bass Guitar";
             numberOfStrings = 4;
-            soundOfInstrument = "Screech";
+            soundOfInstrument = "Duum-duum-duum";
         }
 
-        public Violin(int argNumberOfStrings)
+        public BassGuitar(int argNumberOfStrings)
         {
-            name = "Violin";
+            name = "Bass Guitar";
             numberOfStrings = argNumberOfStrings;
-            soundOfInstrument = "Screech";
+            soundOfInstrument = "Duum-duum-duum";
         }
 
         public override void Play()
