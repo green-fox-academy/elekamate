@@ -41,5 +41,6 @@ namespace _01_Interface_02_Comparable
             dominoes.Add(new Domino(7, 1));
             return dominoes;
         }
+
     }
 }

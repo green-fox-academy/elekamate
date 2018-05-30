@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65BB9CEC-CE76-407B-90FC-AA5180C71936}</ProjectGuid>
+    <ProjectGuid>{EF1DB85B-3A6D-4F31-8FF9-AE9D6CCBC96A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01_Interface_02_Comparable</RootNamespace>
-    <AssemblyName>01-Interface-02-Comparable</AssemblyName>
+    <RootNamespace>_02_AbstrClass_01_Instruments</RootNamespace>
+    <AssemblyName>02-AbstrClass-01-Instruments</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domino.cs" />
-    <Compile Include="Dominoes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Thing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
