@@ -11,8 +11,9 @@ namespace _01_Interface_01_Cloneable
         static void Main(string[] args)
         {
             Student studentJack = new Student("John", 20, "male", "BME");
-            Student studentJoe = studentJack.Clone() as Student;
+            Student studentJoe = (Student)studentJack.Clone();
             Console.ReadLine();
         }
+
     }
 }

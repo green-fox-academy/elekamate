@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domino
+namespace _01_Interface_02_Comparable
 {
-    public class Domino
+    public class Domino : IComparable
     {
         private readonly int[] Values;
 
@@ -15,9 +15,16 @@ namespace Domino
             this.Values = new int[] { valueA, valueB };
         }
 
+        public int CompareTo(object argOtherDomino)
+        {
+            Domino otherDomino = (Domino)argOtherDomino;
+            return this.CompareTo(otherDomino.Values[0]);
+        }
+
         public int[] GetValues()
         {
             return Values;
         }
+
     }
 }
