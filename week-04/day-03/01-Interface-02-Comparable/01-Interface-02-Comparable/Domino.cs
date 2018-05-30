@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _01_Interface_02_Comparable
 {
-    public class Domino : IComparable
+    public class Domino : IComparable<Domino>
     {
         private readonly int[] Values;
 
@@ -15,10 +15,9 @@ namespace _01_Interface_02_Comparable
             this.Values = new int[] { valueA, valueB };
         }
 
-        public int CompareTo(object argOtherDomino)
+        public int CompareTo(Domino argOtherDomino)
         {
-            Domino otherDomino = (Domino)argOtherDomino;
-            return this.CompareTo(otherDomino.Values[0]);
+            return Values[0].CompareTo(argOtherDomino.Values[0]);
         }
 
         public int[] GetValues()
