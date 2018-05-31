@@ -30,34 +30,17 @@ namespace _13_Checkboard
                     actualColor = ChangFieldColor(actualColor, fieldColors);
                 }
 
-<<<<<<< HEAD
-        private Color SettingStartingColorForNextRow(Color actualColor)
-        {
-            Color colorToReturn= actualColor;
-
-            if (checkboardFieldsInOneRow % 2 == 0)
-            {
-                colorToReturn = (actualColor == checkboardTableColor1) ? checkboardTableColor2 : checkboardTableColor1;
-            }
-
-            return colorToReturn;
-=======
                 if (checkboardFieldsInOneRow % 2 == 0)
                 {
                     ChangFieldColor(actualColor, fieldColors);
                 }
             }
->>>>>>> 3d4b707dd4b91b83c6ac0b820eb57686c02f6c84
         }
 
         public int CalcCheckboardFieldsInOneRow(decimal argCheckboardFieldSize)
         {
-<<<<<<< HEAD
-            return (argactualColor == checkboardTableColor1) ? checkboardTableColor2 : checkboardTableColor1;
-=======
-            decimal canvasSizeOfSmallerSide = (canvas.Height < canvas.Width) ? (decimal) canvas.Height : (decimal) canvas.Width;
-            return (int) Math.Floor(canvasSizeOfSmallerSide / argCheckboardFieldSize);
->>>>>>> 3d4b707dd4b91b83c6ac0b820eb57686c02f6c84
+            decimal canvasSizeOfSmallerSide = (canvas.Height < canvas.Width) ? (decimal)canvas.Height : (decimal)canvas.Width;
+            return (int)Math.Floor(canvasSizeOfSmallerSide / argCheckboardFieldSize);
         }
 
         private Color ChangFieldColor(Color argactualColor, List<Color> argfieldColors)
@@ -79,6 +62,5 @@ namespace _13_Checkboard
                 (double)argcheckboardFieldSize
             );
         }
-
     }
 }
