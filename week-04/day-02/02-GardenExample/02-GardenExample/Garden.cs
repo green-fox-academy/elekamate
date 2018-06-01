@@ -43,6 +43,7 @@ namespace _02_GardenExample
                 if (xPlant.WaterNeedThreshold>xPlant.WaterAmount)
                 {
                     numberOfPlantsToWater++;
+                    plantsToWater.Add(xPlant);
                 }
             }
 

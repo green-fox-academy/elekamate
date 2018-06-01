@@ -19,7 +19,13 @@ namespace _02_GardenExample
             garden.Watering(40);
             garden.Watering(40);
 
+            xzmethod();
             Console.ReadLine();
+        }
+
+        public void xzmethod()
+        {
+            Console.WriteLine("fdf");
         }
     }
 }
