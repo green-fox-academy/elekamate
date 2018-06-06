@@ -67,14 +67,7 @@ namespace Optional_02_Lottery
             int givenFreq = 0;
             int givenKey = 0;
 
-            foreach (var xKey in arglotteryNumberFreq.Keys)
-            {
-                if (arglotteryNumberFreq.Values.Max() != arglotteryNumberFreq[xKey])
-                {
-
-                }
-            }
-            while (0==0)
+            while (true)
             {
                 foreach (var xKey in arglotteryNumberFreq.Keys)
                 {
