@@ -63,9 +63,7 @@ namespace Optional_02_Lottery
         {
             List<int> top5LotteryNumbers = new List<int>();
             int howManyTopNumbers;
-
             howManyTopNumbers = FindTop5Freqs(arglotteryNumberFreq);
-
             for (int i = 0; i < howManyTopNumbers; i++)
             {
                 foreach (var xKey in arglotteryNumberFreq.Keys)
@@ -87,7 +85,6 @@ namespace Optional_02_Lottery
             frequencies.Sort();
             frequencies.Reverse();
             int getTopNItemZeroBased = 5;
-            
             if (frequencies[4]==frequencies[5])
             {
                 int i = 4;
