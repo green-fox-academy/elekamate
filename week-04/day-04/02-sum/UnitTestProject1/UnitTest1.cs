@@ -34,10 +34,10 @@ namespace UnitTestProject1
             Assert.AreEqual(inputNumbers, Calc.SumNumbers(new List<int> { 15 }));
         }
 
-        [TestCase(15)]
-        public static void TestForNull(int inputNumbers)
+        [TestCase(0)]
+        public static void TestForZero(int inputNumbers)
         {
-            Assert.AreEqual(inputNumbers, Calc.SumNumbers(new List<int> { null }));
+            Assert.AreEqual(inputNumbers, Calc.SumNumbers(new List<int> { 0 }));
         }
     }
 }
