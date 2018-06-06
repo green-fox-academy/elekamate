@@ -15,8 +15,7 @@ namespace Optional_02_Lottery
             string lotteryDatafilePath = "lottery.csv";
             List<int> lotteryNumbers = ImportLotteryNumbersToList(lotteryDatafilePath);
             Dictionary<int, int> lotteryNumberFreq = CreateNumberFreqDict(lotteryNumbers);
-            List<int> top5LotteryNumbers = Findtop5LotteryNumbers(lotteryNumberFreq);
-
+            List<int> top5LotteryNumbers = ListTop5LotteryNumbers(lotteryNumberFreq);
             Console.ReadLine();
         }
 
@@ -60,37 +59,45 @@ namespace Optional_02_Lottery
             return lotteryNumberFreq;
         }
 
-        private static List<int> Findtop5LotteryNumbers(Dictionary<int, int> arglotteryNumberFreq)
+        private static List<int> ListTop5LotteryNumbers(Dictionary<int, int> arglotteryNumberFreq)
         {
             List<int> top5LotteryNumbers = new List<int>();
-            int prevFreq=0;
-            int givenFreq = 0;
-            int givenKey = 0;
+            int howManyTopNumbers;
 
-            while (true)
+            howManyTopNumbers = FindTop5Freqs(arglotteryNumberFreq);
+
+            for (int i = 0; i < howManyTopNumbers; i++)
             {
                 foreach (var xKey in arglotteryNumberFreq.Keys)
                 {
                     if (arglotteryNumberFreq.Values.Max() == arglotteryNumberFreq[xKey])
                     {
                         top5LotteryNumbers.Add(xKey);
-                        givenKey = xKey;
-                        prevFreq = givenFreq;
-                        givenFreq = arglotteryNumberFreq[xKey];
                         arglotteryNumberFreq.Remove(xKey);
                         break;
                     }
                 }
-                if (top5LotteryNumbers.Count > 4 && prevFreq != givenFreq)
-                {
-                    if (top5LotteryNumbers.Count > 5)
-                    {
-                        top5LotteryNumbers.Remove(givenKey);
-                    }
-                    break;
-                }
             }
             return top5LotteryNumbers;
+        }
+
+        private static int FindTop5Freqs(Dictionary<int, int> arglotteryNumberFreq)
+        {
+            List<int> frequencies = arglotteryNumberFreq.Values.ToList();
+            frequencies.Sort();
+            frequencies.Reverse();
+            int getTopNItemZeroBased = 5;
+            
+            if (frequencies[4]==frequencies[5])
+            {
+                int i = 4;
+                while (frequencies[i] == frequencies[i+1])
+                {
+                    i++;
+                }
+                getTopNItemZeroBased = i + 1;
+            }
+            return getTopNItemZeroBased;
         }
     }
 }
