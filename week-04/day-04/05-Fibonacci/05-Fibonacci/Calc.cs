@@ -8,7 +8,7 @@ namespace _05_Fibonacci
 {
     public class Calc
     {
-        public static int CalcFibonacci(int n)
+        public int CalcFibonacci(int n)
         {
             int fibonacciResult = 1;
             if (n==0)

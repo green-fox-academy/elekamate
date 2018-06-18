@@ -15,17 +15,9 @@ namespace _02_GardenExample
             Flower blueFlower = new Flower("blue");
             Tree purpleTree = new Tree("purple");
             Tree orangeTree = new Tree("orange");
-
             garden.Watering(40);
-            garden.Watering(40);
-
-            xzmethod();
+            garden.Watering(70);
             Console.ReadLine();
-        }
-
-        public void xzmethod()
-        {
-            Console.WriteLine("fdf");
         }
     }
 }

@@ -7,16 +7,30 @@ namespace UnitTestProject1
     [TestFixture]
     public class UnitTest1
     {
-        [TestCase(0)]
-        public static void TestMethod1(int inputNumbers)
+        Calc calc;
+
+        [SetUp]
+        public void SetUp()
         {
-            Assert.AreEqual(inputNumbers, Calc.CalcFibonacci(0));
+            calc = new Calc();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            calc = null;
+        }
+
+        [TestCase(0)]
+        public void TestMethod1(int inputNumbers)
+        {
+            Assert.AreEqual(inputNumbers, calc.CalcFibonacci(0));
         }
 
         [TestCase(6)]
-        public static void TestMethod3(int inputNumbers)
+        public void TestMethod3(int inputNumbers)
         {
-            Assert.AreEqual(inputNumbers, Calc.CalcFibonacci(3));
+            Assert.AreEqual(inputNumbers, calc.CalcFibonacci(3));
         }
     }
 }
