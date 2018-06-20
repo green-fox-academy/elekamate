@@ -1,0 +1,39 @@
+body
+{
+    background-color: rgb(20, 129, 219);
+}
+
+.table0
+{
+    margin: 0;
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-color: rgb(156, 156, 156);
+}
+
+.table0Header
+{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
+
+.table0Body
+{
+    color: rgb(0, 0, 0);
+    width: 100%;
+}
+
+td
+{
+    padding: 8 px;
+}
+
+.table0Body tr:nth-child(odd)
+{
+	background: #b8d1f3;
+}
+
+.table0Body tr:nth-child(even)
+{
+	background: #dae5f4;
+}
