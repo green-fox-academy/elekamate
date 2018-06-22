@@ -10,13 +10,17 @@ namespace ToDoApp
     {
         private SQLiteConnection myConnection;
 
-
-        public DataBase()
+        public DataBase(string dbFileName, string queryCreateTable)
         {
-            myConnection = new SQLiteConnection("Data Source = todoDB.sqlite3");
-            if (!File.Exists("todoDB.sqlite3"))
+            myConnection = new SQLiteConnection($"Data Source = {dbFileName}.sqlite3");
+            if (!File.Exists($"{dbFileName}.sqlite3"))
             {
-                SQLiteConnection.CreateFile("todoDB.sqlite3");
+                
+                SQLiteConnection.CreateFile($"{dbFileName}.sqlite3");
+                OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(queryCreateTable, myConnection);
+                command.ExecuteNonQuery();
+                CloseConnection();
                 Console.WriteLine("Todo DB has not found, file created.");
             }
             else

@@ -11,7 +11,14 @@ namespace ToDoApp
     {
         static void Main(string[] args)
         {
-            DataBase todoDB = new DataBase();
+            string queryCreateTable = @"CREATE TABLE `todos` (
+	                        `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	                        `todo`	TEXT NOT NULL,
+	                        `createdat`	INTEGER NOT NULL,
+	                        `completedat`	INTEGER
+                            ); ";
+            DataBase todoDB = new DataBase("todo", queryCreateTable);
+
 
             string query = "INSERT INTO album ('title', 'artist') VALUES (@title, @artist)";
             SQLiteCommand myCommand = new SQLiteCommand(query, todoDB.GetMyConnection());
