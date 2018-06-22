@@ -11,25 +11,19 @@ namespace ToDoApp
     {
         static void Main(string[] args)
         {
+            string databaseName = "todo";
             string queryCreateTable = @"CREATE TABLE `todos` (
-	                        `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	                        `todo`	TEXT NOT NULL,
-	                        `createdat`	INTEGER NOT NULL,
-	                        `completedat`	INTEGER
-                            ); ";
-            DataBase todoDB = new DataBase("todo", queryCreateTable);
+	                                        `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	                                        `todo`	TEXT NOT NULL,
+	                                        `createdat`	INTEGER NOT NULL,
+	                                        `completedat`	INTEGER
+                                        );";
+            string queryForInsert = "INSERT INTO todos (`todo`, `createdat`, `completedat`) VALUES (@todo, @createdat, @completedat)";
+            
+            DataBase todoDB = new DataBase(databaseName, queryCreateTable);
 
-
-            string query = "INSERT INTO album ('title', 'artist') VALUES (@title, @artist)";
-            SQLiteCommand myCommand = new SQLiteCommand(query, todoDB.GetMyConnection());
-            todoDB.OpenConnection();
-            myCommand.Parameters.AddWithValue("@title", "xx");
-            myCommand.Parameters.AddWithValue("@artist", "yy");
-
-            var result = myCommand.ExecuteNonQuery();
-            todoDB.CloseConnection();
-
-            Console.WriteLine($"Entries added: {result}");
+            todoDB.InsertInto(queryForInsert);
+            
 
 
 
@@ -47,7 +41,7 @@ namespace ToDoApp
             //}
             //todoDB.CloseConnection();
 
-            Console.WriteLine($"Entries added: {result}");
+            //Console.WriteLine($"Entries added: {result}");
 
 
             Console.ReadLine();

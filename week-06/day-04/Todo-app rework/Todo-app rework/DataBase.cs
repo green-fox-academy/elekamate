@@ -47,5 +47,17 @@ namespace ToDoApp
                 myConnection.Close();
             }
         }
+
+        public void InsertInto(string queryForInsert)
+        {
+            SQLiteCommand myCommand = new SQLiteCommand(queryForInsert, myConnection);
+            OpenConnection();
+            myCommand.Parameters.AddWithValue("@todo", "xx");
+            myCommand.Parameters.AddWithValue("@createdat", DateTime.Now);
+            myCommand.Parameters.AddWithValue("@completedat", DateTime.Today);
+            var result = myCommand.ExecuteNonQuery();
+            CloseConnection();
+            Console.WriteLine($"Entries added: {result}");
+        }
     }
 }
