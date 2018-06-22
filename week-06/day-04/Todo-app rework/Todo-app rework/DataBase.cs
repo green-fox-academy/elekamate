@@ -15,7 +15,6 @@ namespace ToDoApp
             myConnection = new SQLiteConnection($"Data Source = {dbFileName}.sqlite3");
             if (!File.Exists($"{dbFileName}.sqlite3"))
             {
-                
                 SQLiteConnection.CreateFile($"{dbFileName}.sqlite3");
                 OpenConnection();
                 SQLiteCommand command = new SQLiteCommand(queryCreateTable, myConnection);
