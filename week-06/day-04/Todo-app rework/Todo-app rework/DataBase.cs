@@ -49,16 +49,33 @@ namespace ToDoApp
             }
         }
 
-        public void InsertInto(string queryForInsert)
+        public void InsertInto(string todoDescr, object completedat)
         {
+            string queryForInsert = "INSERT INTO todos (`todo`, `createdat`, `completedat`) VALUES (@todo, @createdat, @completedat)";
             SQLiteCommand myCommand = new SQLiteCommand(queryForInsert, myConnection);
             OpenConnection();
-            myCommand.Parameters.AddWithValue("@todo", "xx");
+            myCommand.Parameters.AddWithValue("@todo", todoDescr);
             myCommand.Parameters.AddWithValue("@createdat", DateTime.Now);
-            myCommand.Parameters.AddWithValue("@completedat", DateTime.Today);
+            myCommand.Parameters.AddWithValue("@completedat", completedat);
             var result = myCommand.ExecuteNonQuery();
             CloseConnection();
             Console.WriteLine($"Entries added: {result}");
+        }
+
+        public void SelectData(string queryForSelect)
+        {
+            SQLiteCommand myCommand2 = new SQLiteCommand(queryForSelect, GetMyConnection());
+            OpenConnection();
+            SQLiteDataReader result2 = myCommand2.ExecuteReader();
+            if (result2.HasRows)
+            {
+                while (result2.Read())
+                {
+                    Console.WriteLine($"todos: {result2["todo"]}, {result2["createdat"]}, {result2["completedat"]}");
+                }
+            }
+            CloseConnection();
+            Console.WriteLine($"Entries read: {result2}");
         }
     }
 }

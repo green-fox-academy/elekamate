@@ -18,32 +18,11 @@ namespace ToDoApp
 	                                        `createdat`	INTEGER NOT NULL,
 	                                        `completedat`	INTEGER
                                         );";
-            string queryForInsert = "INSERT INTO todos (`todo`, `createdat`, `completedat`) VALUES (@todo, @createdat, @completedat)";
             
             DataBase todoDB = new DataBase(databaseName, queryCreateTable);
-
-            todoDB.InsertInto(queryForInsert);
-            
-
-
-
-
-            //string query2 = "SELECT * FROM albums";
-            //SQLiteCommand myCommand2 = new SQLiteCommand(query2, todoDB.GetMyConnection());
-            //todoDB.OpenConnection();
-            //SQLiteDataReader result2 = myCommand2.ExecuteReader();
-            //if (result2.HasRows)
-            //{
-            //    while (result2.Read())
-            //    {
-            //        Console.WriteLine($"Album: {result2["title"]}, {result2["artist"]}");
-            //    }
-            //}
-            //todoDB.CloseConnection();
-
-            //Console.WriteLine($"Entries added: {result}");
-
-
+            todoDB.InsertInto("x1");
+            //string query2 = "SELECT * FROM todos";
+            //todoDB.SelectData(query2);
             Console.ReadLine();
         }
     }
