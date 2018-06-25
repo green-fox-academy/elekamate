@@ -62,16 +62,29 @@ namespace ToDoApp
             Console.WriteLine($"Entries added: {result}");
         }
 
-        public void SelectData(string queryForSelect)
+        public void SelectData()
         {
-            SQLiteCommand myCommand2 = new SQLiteCommand(queryForSelect, GetMyConnection());
+            string querySelect = "SELECT todo, createdat FROM todos";
+            SQLiteCommand myCommand2 = new SQLiteCommand(querySelect, GetMyConnection());
             OpenConnection();
             SQLiteDataReader result2 = myCommand2.ExecuteReader();
+            DateTime completedatValue;
+
+            //if (result2["completedat"] == null)
+            //{
+            //    completedatValue = "";
+            //}
+            //else
+            //{
+            //    completedatValue = result2["completedat"].ToString();
+            //}
+
             if (result2.HasRows)
             {
                 while (result2.Read())
                 {
-                    Console.WriteLine($"todos: {result2["todo"]}, {result2["createdat"]}, {result2["completedat"]}");
+                    completedatValue = result2.GetDateTime(1);
+                    Console.WriteLine($"todos: {result2["todo"]}, {completedatValue}");
                 }
             }
             CloseConnection();

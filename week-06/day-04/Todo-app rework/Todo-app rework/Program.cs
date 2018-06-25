@@ -20,9 +20,9 @@ namespace ToDoApp
                                         );";
             
             DataBase todoDB = new DataBase(databaseName, queryCreateTable);
-            todoDB.InsertInto("x1");
-            //string query2 = "SELECT * FROM todos";
-            //todoDB.SelectData(query2);
+            //todoDB.InsertInto("x2",null);
+            
+            todoDB.SelectData();
             Console.ReadLine();
         }
     }
