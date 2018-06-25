@@ -40,6 +40,7 @@ namespace ToDoApp
                 myConnection.Open();
             }
         }
+
         public void CloseConnection()
         {
             if (myConnection.State != System.Data.ConnectionState.Closed)
