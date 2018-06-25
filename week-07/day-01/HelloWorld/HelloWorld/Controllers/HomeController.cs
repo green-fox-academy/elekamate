@@ -6,16 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HelloWorld.Controllers
 {
+    [Route("api/[controller]")]
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return Content("Hello index.");
         }
 
+        [Route("hello")]
         public IActionResult Hello()
         {
-            return View();
+            return Content("Hello world!");
         }
     }
 }
