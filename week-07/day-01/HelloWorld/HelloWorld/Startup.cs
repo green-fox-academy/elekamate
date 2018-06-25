@@ -33,8 +33,6 @@ namespace HelloWorld
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            
             app.UseMvc();
         }
     }
