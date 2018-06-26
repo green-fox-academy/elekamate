@@ -1,0 +1,43 @@
+﻿@model List<BankAccount>
+
+@{
+    ViewData["Title"] = "Simba";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Simba</h2>
+<br />
+<form action="/" , method="post">
+    @foreach (BankAccount bankAcc in Model)
+    {
+        <p>Increase @bankAcc.Name account.</p>
+    }
+
+
+</form>
+
+
+
+
+@{int elementIndex = 0; }
+@{string fontStyle = "";}
+@{string isGud = "";}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Index number</th>
+    </tr>
+    @foreach (BankAccount bankAcc in Model)
+    {
+        elementIndex++;
+        fontStyle = (@bankAcc.Name == "King") ? "blue" : "black";
+        isGud = (bankAcc.Balance < 9000) ? "Good One" : "Bad Guy";
+    <tr>
+        <td style="color: @fontStyle">@bankAcc.Name</td>
+        <td align="right">@string.Format("{0:0.00}", bankAcc.Balance) zebra</td>
+        <td align="right">@elementIndex</td>
+        <td align="right">@isGud</td>
+    </tr>
+    }
+</table>
