@@ -8,6 +8,8 @@ namespace FoxClubProject.Services
 {
     public interface ILoginService
     {
-        List<Fox> GetFoxes();
+        bool Validation(string loginName);
+        Fox GetActualFox();
+        void AddFox(Fox foxToAdd);
     }
 }

@@ -44,7 +44,7 @@ namespace FoxClubProject
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}");
+                    template: "{controller=Login}/{action=Login}/{id?}");
             });
         }
     }

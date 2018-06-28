@@ -8,14 +8,12 @@ using FoxClubProject.Models;
 
 namespace FoxClubProject.Controllers
 {
+    [Route("Home")]
     public class HomeController : Controller
     {
+        [HttpGet]
+        [Route("Index")]
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Login()
         {
             return View();
         }

@@ -8,7 +8,8 @@ namespace FoxClubProject.Services
 {
     public class LoginService : ILoginService
     {
-        private List<Fox> foxes;
+        private List<Fox> foxes = new List<Fox>();
+        private Fox actualFox;
 
         public LoginService()
         {
@@ -17,9 +18,29 @@ namespace FoxClubProject.Services
             foxes.Add(new Fox("FoxC"));
         }
 
-        public List<Fox> GetFoxes()
+        public void AddFox(Fox foxToAdd)
         {
-            return foxes;
+            foxes.Add(foxToAdd);
+        }
+
+        public Fox GetActualFox()
+        {
+            return actualFox;
+        }
+
+        public bool Validation(string loginName)
+        {
+            if (loginName != null)
+            {
+                foreach (Fox xFox in foxes)
+                {
+                    if (xFox.Name.ToLower() == loginName.ToLower())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
