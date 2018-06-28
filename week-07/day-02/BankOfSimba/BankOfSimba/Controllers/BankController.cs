@@ -26,5 +26,12 @@ namespace BankOfSimba.Controllers
         {
             return View(bankAccounts);
         }
+
+        [HttpPost]
+        public IActionResult IncreaseBalance(BankAccount bankaccount)
+        {
+
+            return RedirectToAction("Bank/Simba.cshtml");
+        }
     }
 }
