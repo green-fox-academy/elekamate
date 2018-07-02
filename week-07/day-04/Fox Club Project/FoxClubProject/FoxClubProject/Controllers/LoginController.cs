@@ -37,7 +37,7 @@ namespace FoxClubProject.Controllers
                 foxService.SetUserFox(userFox);
                 foxService.GetUserFox().TrickAdd(foxService.GetTricks()[0]);
                 foxService.GetUserFox().TrickAdd(foxService.GetTricks()[1]);
-                return RedirectToAction("../Fox/Index");
+                return RedirectToAction("index", "fox");
             }
             else
             {

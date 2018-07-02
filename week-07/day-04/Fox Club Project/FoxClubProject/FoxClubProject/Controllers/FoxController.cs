@@ -19,8 +19,9 @@ namespace FoxClubProject.Controllers
 
         [HttpGet]
         [Route("Index")]
-        public IActionResult Index()
+        public IActionResult Index(string foxName)
         {
+            Response.Redirect($"fox/index?foxName={foxService.GetUserFox().Name}");
             return View(foxService.GetUserFox());
         }
     }
