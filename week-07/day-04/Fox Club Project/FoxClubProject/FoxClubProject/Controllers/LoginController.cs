@@ -12,10 +12,12 @@ namespace FoxClubProject.Controllers
     public class LoginController : Controller
     {
         private ILoginService loginService;
+        private IFoxService foxService;
 
-        public LoginController(ILoginService loginService)
+        public LoginController(ILoginService loginService, IFoxService foxService)
         {
             this.loginService = loginService;
+            this.foxService = foxService;
         }
 
         [HttpGet]
@@ -31,7 +33,11 @@ namespace FoxClubProject.Controllers
         {
             if (loginService.Validation(name))
             {
-                return RedirectToAction("../Home/Index");
+                Fox userFox = new Fox(name);
+                foxService.SetUserFox(userFox);
+                foxService.GetUserFox().TrickAdd(foxService.GetTricks()[0]);
+                foxService.GetUserFox().TrickAdd(foxService.GetTricks()[1]);
+                return RedirectToAction("../Fox/Index");
             }
             else
             {

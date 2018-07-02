@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FoxClubProject.Services
 {
-    public interface ILoginService
+    public interface IFoxService
     {
-        bool Validation(string loginName);
-        Fox GetActualFox();
-        void AddFox(Fox foxToAdd);
+        void SetUserFox(Fox foxToSet);
+        Fox GetUserFox();
+        List<Trick> GetTricks();
     }
 }

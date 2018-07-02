@@ -24,5 +24,10 @@ namespace FoxClubProject.Models
         {
             return knownTricks;
         }
+
+        public int GetNumberOfTricks()
+        {
+            return knownTricks.Count();
+        }
     }
 }

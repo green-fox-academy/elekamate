@@ -8,5 +8,10 @@ namespace FoxClubProject.Models
     public class Trick
     {
         public string Name { get; set; }
+
+        public Trick(string name)
+        {
+            Name = name;
+        }
     }
 }

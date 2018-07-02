@@ -1,0 +1,28 @@
+﻿@model Fox
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+        <li><a href="home/about">Information</a></li>
+    </ul>
+    <img src="~/images/greenfox.png" alt="GreenFoxPicture" />
+    <p>This is Mr. Fox. Currently living on pizza and lemonade. He knows @Model.GetNumberOfTricks()  tricks.</p>
+    <h2>Known tricks</h2>
+    <ul>
+        @if (Model.GetNumberOfTricks() < 1)
+        {
+            <li>He does not know any trick</li>
+        }
+        else
+        {
+            foreach (Trick xTrick in Model.GetTricks())
+            {
+                <li>@xTrick.Name</li>
+            }
+        }
+    </ul>
+</body>
+</html>

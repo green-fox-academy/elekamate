@@ -9,7 +9,6 @@ namespace FoxClubProject.Services
     public class LoginService : ILoginService
     {
         private List<Fox> foxes = new List<Fox>();
-        private Fox actualFox;
 
         public LoginService()
         {
@@ -21,11 +20,6 @@ namespace FoxClubProject.Services
         public void AddFox(Fox foxToAdd)
         {
             foxes.Add(foxToAdd);
-        }
-
-        public Fox GetActualFox()
-        {
-            return actualFox;
         }
 
         public bool Validation(string loginName)
