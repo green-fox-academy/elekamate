@@ -1,0 +1,25 @@
+﻿@model List<ToDo>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<a href="addtodo">AddToDo</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Action</th>
+        <th>Done</th>
+        <th>Urgent</th>
+    </tr>
+    @foreach (var xToDo in Model)
+    {
+        <tr>
+            <td>@xToDo.Id</td>
+            <td>@xToDo.Title</td>
+            <td>@xToDo.IsDone</td>
+            <td>@xToDo.IsUrgent</td>
+        </tr>
+    }
+</table>
