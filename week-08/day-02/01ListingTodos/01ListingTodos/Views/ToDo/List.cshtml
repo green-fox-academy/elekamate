@@ -22,8 +22,8 @@
         <td>@xToDo.IsUrgent</td>
         <td>@Html.ActionLink("Delete", "DeleteToDo", new { toDoIDToDelete = xToDo.Id })</td>
         <td>
-            <form action="DeleteToDo" method="post">
-                <input type="submit" name="@xToDo.Id" value="delete item"/>
+            <form action="DeleteToDo?toDoIDToDelete=@xToDo.Id" method="post">
+                <input type="submit" value="delete item"/>
             </form>
         </td>
     </tr>
