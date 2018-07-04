@@ -19,7 +19,7 @@ namespace ListingTodos.Controllers
 
         public void Index()
         {
-            Response.Redirect("list?isactive=true");
+            Response.Redirect("/todo/list?isactive=true");
         }
 
         public IActionResult List(bool IsActive)
@@ -31,7 +31,7 @@ namespace ListingTodos.Controllers
         [HttpGet]
         public IActionResult AddToDo()
         {
-            return View("AddToDo", toDoContext.ToDos);
+            return View("addtodo", toDoContext.ToDos);
         }
 
         [HttpPost]
@@ -43,7 +43,19 @@ namespace ListingTodos.Controllers
                 IsUrgent = false,
                 IsDone = false,
             };
-            return Redirect("index");
+
+            toDoContext.ToDos.Add(toDoToAdd);
+            toDoContext.SaveChanges();
+            return Redirect("/todo/index");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteToDo(long toDoIDToDelete)
+        {
+            ToDo todoToDelete = toDoContext.ToDos.FirstOrDefault(todo => todo.Id == toDoIDToDelete);
+            toDoContext.ToDos.Remove(todoToDelete);
+            toDoContext.SaveChanges();
+            return Redirect("/todo/index");
         }
     }
 }
