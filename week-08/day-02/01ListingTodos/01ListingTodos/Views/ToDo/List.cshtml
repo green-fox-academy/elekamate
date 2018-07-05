@@ -1,6 +1,4 @@
-﻿@* Generator: MvcHelper *@
-
-@model List<ToDo>
+﻿@model ListingTodos.ViewModels.ToDoViewModel
 
 @{
     ViewData["Title"] = "List";
@@ -14,7 +12,7 @@
 
 }
 
-@if (Model.Count() == 0)
+@if (Model.ToDos.Count() == 0)
 {
     <p>No result.</p>
 }
@@ -27,14 +25,13 @@ else
             <th>Done</th>
             <th>Urgent</th>
         </tr>
-        @foreach (var xToDo in Model)
+        @foreach (var xToDo in Model.ToDos)
         {
             <tr>
                 <td>@xToDo.Id</td>
                 <td>@xToDo.Title</td>
                 <td>@xToDo.IsDone</td>
                 <td>@xToDo.IsUrgent</td>
-                <td>@Html.ActionLink("Delete", "DeleteToDo", new { toDoIDToDelete = xToDo.Id })</td>
                 <td>
                     <form action="DeleteToDo?toDoIDToDelete=@xToDo.Id" method="post">
                         <input type="submit" value="delete item" />
@@ -44,3 +41,19 @@ else
         }
     </table>
 }
+
+    <br />
+    <table>
+        <tr>
+            <th>Assignee</th>
+        </tr>
+        @foreach (Assignee xAssignee in Model.Assignees)
+        {
+            <tr>
+                <td></td>
+                <form action="todo/ListToDosOfAssignee?assigneeIdToFind=@xAssignee.Id" method="post"><button>
+                    @xAssignee.Name
+                </button></form>
+            </tr>
+        }
+    </table>

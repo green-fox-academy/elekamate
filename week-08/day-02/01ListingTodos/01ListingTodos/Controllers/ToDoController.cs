@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ListingTodos.Models;
 using ListingTodos.Repositories;
+using ListingTodos.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListingTodos.Controllers
@@ -11,6 +12,7 @@ namespace ListingTodos.Controllers
     public class ToDoController : Controller
     {
         private ToDoContext toDoContext;
+        public ToDoViewModel toDoViewModel = new ToDoViewModel();
 
         public ToDoController(ToDoContext toDoContext)
         {
@@ -27,12 +29,14 @@ namespace ListingTodos.Controllers
             IEnumerable<ToDo> filteredToDoDB = (isActive == true) ? toDoContext.ToDos.ToList().Where(toDo => toDo.IsDone == false) : toDoContext.ToDos.ToList();
             if (searching == null)
             {
-                return View(filteredToDoDB.ToList());
+                toDoViewModel.ToDos = filteredToDoDB.ToList();
             }
             else
             {
-                return View(filteredToDoDB.Where(todo => todo.Title.Contains(searching)).ToList());
+                toDoViewModel.ToDos = filteredToDoDB.Where(todo => todo.Title.Contains(searching)).ToList();
             }
+            toDoViewModel.Assignees = toDoContext.Assignees.ToList();
+            return View(toDoViewModel);
         }
 
         [HttpGet]
@@ -63,6 +67,14 @@ namespace ListingTodos.Controllers
             toDoContext.ToDos.Remove(todoToDelete);
             toDoContext.SaveChanges();
             return Redirect("/todo/index");
+        }
+
+        [HttpGet]
+        public IActionResult
+        [HttpPost]
+        public IActionResult ListToDosOfAssignee(long assigneeIdToFind)
+        {
+            return View(toDoViewModel.ToDos.Where(assignee => assignee.Id == assigneeIdToFind).ToList());
         }
     }
 }

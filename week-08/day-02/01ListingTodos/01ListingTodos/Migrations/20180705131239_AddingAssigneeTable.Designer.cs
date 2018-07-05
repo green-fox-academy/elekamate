@@ -4,14 +4,16 @@ using ListingTodos.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace _01ListingTodos.Migrations
 {
     [DbContext(typeof(ToDoContext))]
-    partial class ToDoContextModelSnapshot : ModelSnapshot
+    [Migration("20180705131239_AddingAssigneeTable")]
+    partial class AddingAssigneeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,11 @@ namespace _01ListingTodos.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<long?>("ToDoId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ToDoId");
 
                     b.ToTable("Assignees");
                 });
@@ -40,8 +46,6 @@ namespace _01ListingTodos.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("AssigneeId");
-
                     b.Property<bool>("IsDone");
 
                     b.Property<bool>("IsUrgent");
@@ -50,16 +54,14 @@ namespace _01ListingTodos.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssigneeId");
-
                     b.ToTable("ToDos");
                 });
 
-            modelBuilder.Entity("ListingTodos.Models.ToDo", b =>
+            modelBuilder.Entity("ListingTodos.Models.Assignee", b =>
                 {
-                    b.HasOne("ListingTodos.Models.Assignee", "Assignee")
-                        .WithMany("ToDos")
-                        .HasForeignKey("AssigneeId");
+                    b.HasOne("ListingTodos.Models.ToDo")
+                        .WithMany("Assignees")
+                        .HasForeignKey("ToDoId");
                 });
 #pragma warning restore 612, 618
         }

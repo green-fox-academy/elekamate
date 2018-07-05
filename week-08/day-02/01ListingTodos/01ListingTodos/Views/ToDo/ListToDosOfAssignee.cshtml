@@ -1,0 +1,19 @@
+﻿@model List<ToDo>
+@{
+    ViewData["Title"] = "ListToDosOfAssignee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a href="/todo/list">Go Back to the all todos</a>
+<h2>ListToDosOfAssignee</h2>
+<table>
+    <tr>
+        <th>assignee</th>
+    </tr>
+    @foreach (ToDo xToDo in Model)
+    {
+        <tr>
+            <td>@xToDo.Title</td>
+        </tr>
+    }
+</table>

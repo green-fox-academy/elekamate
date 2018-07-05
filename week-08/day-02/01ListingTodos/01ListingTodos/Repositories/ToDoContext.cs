@@ -10,6 +10,7 @@ namespace ListingTodos.Repositories
     public class ToDoContext : DbContext
     {
         public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<Assignee> Assignees { get; set; }
         public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
         {
 

@@ -10,5 +10,6 @@ namespace ListingTodos.Models
         public long Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public ICollection<ToDo> ToDos { get; set; }
     }
 }
