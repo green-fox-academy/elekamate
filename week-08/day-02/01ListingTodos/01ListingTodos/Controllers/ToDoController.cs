@@ -22,10 +22,17 @@ namespace ListingTodos.Controllers
             Response.Redirect("/todo/list?isactive=true");
         }
 
-        public IActionResult List(bool IsActive)
+        public IActionResult List(bool isActive, string searching)
         {
-            IEnumerable<ToDo> filteredToDoDB = (IsActive == true) ? toDoContext.ToDos.ToList().Where(toDo => toDo.IsDone == false) : toDoContext.ToDos.ToList();
-            return View(filteredToDoDB.ToList());
+            IEnumerable<ToDo> filteredToDoDB = (isActive == true) ? toDoContext.ToDos.ToList().Where(toDo => toDo.IsDone == false) : toDoContext.ToDos.ToList();
+            if (searching == null)
+            {
+                return View(filteredToDoDB.ToList());
+            }
+            else
+            {
+                return View(filteredToDoDB.Where(todo => todo.Title.Contains(searching)).ToList());
+            }
         }
 
         [HttpGet]

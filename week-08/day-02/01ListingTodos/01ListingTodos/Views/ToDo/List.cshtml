@@ -1,4 +1,6 @@
-﻿@model List<ToDo>
+﻿@* Generator: MvcHelper *@
+
+@model List<ToDo>
 
 @{
     ViewData["Title"] = "List";
@@ -6,30 +8,39 @@
 
 <a href="addtodo">AddToDo</a>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Action</th>
-        <th>Done</th>
-        <th>Urgent</th>
-    </tr>
-    @foreach (var xToDo in Model)
-    {
-    <tr>
-        <td>@xToDo.Id</td>
-        <td>@xToDo.Title</td>
-        <td>@xToDo.IsDone</td>
-        <td>@xToDo.IsUrgent</td>
-        <td>@Html.ActionLink("Delete", "DeleteToDo", new { toDoIDToDelete = xToDo.Id })</td>
-        <td>
-            <form action="DeleteToDo?toDoIDToDelete=@xToDo.Id" method="post">
-                <input type="submit" value="delete item"/>
-            </form>
-        </td>
-    </tr>
-    }
-</table>
+@using (Html.BeginForm("list", "todo", FormMethod.Get))
+{
+    @Html.TextBox("searching")<input type="submit" value="Search" />
 
-<PropertyGroup>
-    <MvcBuildViews>true</MvcBuildViews>
-</PropertyGroup>
+}
+
+@if (Model.Count() == 0)
+{
+    <p>No result.</p>
+}
+else
+{
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Action</th>
+            <th>Done</th>
+            <th>Urgent</th>
+        </tr>
+        @foreach (var xToDo in Model)
+        {
+            <tr>
+                <td>@xToDo.Id</td>
+                <td>@xToDo.Title</td>
+                <td>@xToDo.IsDone</td>
+                <td>@xToDo.IsUrgent</td>
+                <td>@Html.ActionLink("Delete", "DeleteToDo", new { toDoIDToDelete = xToDo.Id })</td>
+                <td>
+                    <form action="DeleteToDo?toDoIDToDelete=@xToDo.Id" method="post">
+                        <input type="submit" value="delete item" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
