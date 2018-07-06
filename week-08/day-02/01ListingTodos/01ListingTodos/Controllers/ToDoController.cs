@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ListingTodos.Models;
 using ListingTodos.Repositories;
+using ListingTodos.Services;
 using ListingTodos.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +12,15 @@ namespace ListingTodos.Controllers
 {
     public class ToDoController : Controller
     {
-        private ToDoContext toDoContext;
-        public ToDoViewModel toDoViewModel = new ToDoViewModel();
+        private ToDoContext toDoContextObj;
+        private IToDoService toDoServiceObj;
+        private ToDoViewModel toDoViewModel;
 
-        public ToDoController(ToDoContext toDoContext)
+        public ToDoController(ToDoContext toDoContext, IToDoService toDoService)
         {
-            this.toDoContext = toDoContext;
+            toDoContextObj = toDoContext;
+            toDoServiceObj = toDoService;
+            toDoViewModel = new ToDoViewModel();
         }
 
         public void Index()
@@ -24,9 +28,10 @@ namespace ListingTodos.Controllers
             Response.Redirect("/todo/list?isactive=true");
         }
 
+        [HttpGet]
         public IActionResult List(bool isActive, string searching)
         {
-            IEnumerable<ToDo> filteredToDoDB = (isActive == true) ? toDoContext.ToDos.ToList().Where(toDo => toDo.IsDone == false) : toDoContext.ToDos.ToList();
+            IEnumerable<ToDo> filteredToDoDB = (isActive == true) ? toDoContextObj.ToDos.ToList().Where(toDo => toDo.IsDone == false) : toDoContextObj.ToDos.ToList();
             if (searching == null)
             {
                 toDoViewModel.ToDos = filteredToDoDB.ToList();
@@ -35,14 +40,14 @@ namespace ListingTodos.Controllers
             {
                 toDoViewModel.ToDos = filteredToDoDB.Where(todo => todo.Title.Contains(searching)).ToList();
             }
-            toDoViewModel.Assignees = toDoContext.Assignees.ToList();
+            toDoViewModel.Assignees = toDoContextObj.Assignees.ToList();
             return View(toDoViewModel);
         }
 
         [HttpGet]
         public IActionResult AddToDo()
         {
-            return View("addtodo", toDoContext.ToDos);
+            return View("addtodo", toDoContextObj.ToDos);
         }
 
         [HttpPost]
@@ -55,26 +60,31 @@ namespace ListingTodos.Controllers
                 IsDone = false,
             };
 
-            toDoContext.ToDos.Add(toDoToAdd);
-            toDoContext.SaveChanges();
+            toDoContextObj.ToDos.Add(toDoToAdd);
+            toDoContextObj.SaveChanges();
             return Redirect("/todo/index");
         }
 
         [HttpPost]
         public IActionResult DeleteToDo(long toDoIDToDelete)
         {
-            ToDo todoToDelete = toDoContext.ToDos.FirstOrDefault(todo => todo.Id == toDoIDToDelete);
-            toDoContext.ToDos.Remove(todoToDelete);
-            toDoContext.SaveChanges();
+            ToDo todoToDelete = toDoContextObj.ToDos.FirstOrDefault(todo => todo.Id == toDoIDToDelete);
+            toDoContextObj.ToDos.Remove(todoToDelete);
+            toDoContextObj.SaveChanges();
             return Redirect("/todo/index");
         }
 
         [HttpGet]
-        public IActionResult
-        [HttpPost]
-        public IActionResult ListToDosOfAssignee(long assigneeIdToFind)
+        public IActionResult ListToDosOfAssignee()
         {
-            return View(toDoViewModel.ToDos.Where(assignee => assignee.Id == assigneeIdToFind).ToList());
+            return View(toDoServiceObj.GetToDosOfAssignee());
+        }
+
+        [HttpPost]
+        public IActionResult ListToDosOfAssigneePost(long assigneeIdToFind)
+        {
+            toDoServiceObj.SetToDosOfAssignee(toDoContextObj.ToDos.Where(todo => todo.Assignee.Id == assigneeIdToFind).ToList());
+            return Redirect("/ToDo/ListToDosOfAssignee");
         }
     }
 }

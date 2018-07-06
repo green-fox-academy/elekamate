@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ListingTodos.Repositories;
+using ListingTodos.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace ListingTodos
             services.AddDbContext<ToDoContext>(options =>
                 options.UseSqlServer(connectionStringToDoDB));
             services.AddTransient<ToDoContext>();
+            services.AddSingleton<IToDoService, ToDoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

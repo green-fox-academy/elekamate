@@ -39,7 +39,7 @@ else
                 </td>
             </tr>
         }
-    </table>
+    </table> 
 }
 
     <br />
@@ -51,9 +51,9 @@ else
         {
             <tr>
                 <td></td>
-                <form action="todo/ListToDosOfAssignee?assigneeIdToFind=@xAssignee.Id" method="post"><button>
-                    @xAssignee.Name
-                </button></form>
+                <form action="/todo/ListToDosOfAssigneePost?assigneeIdToFind=@xAssignee.Id" method="post">
+                    <input type="submit" value=@xAssignee.Name/>
+                </form>
             </tr>
         }
     </table>
