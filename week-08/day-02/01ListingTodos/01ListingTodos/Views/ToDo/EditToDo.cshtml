@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "EditToDo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit ToDo</h2>
+<form action="/" method="post">
+    <p>Todo Description</p>
+    <input type="text" name="Title" value="false" />
+    <br />
+
+    <p>Urgent</p>
+    <input type="checkbox" name="IsUrgent" value="false" />
+    <br />
+
+    <p>Done</p>
+    <input type="checkbox" name="IsDone" value="false" />
+    <br />
+
+    <input type="submit" value="Submit" />
+    <a href="/todo/list"> </a>
+</form>
+

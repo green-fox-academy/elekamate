@@ -13,7 +13,6 @@ namespace ListingTodos.Repositories
         public DbSet<Assignee> Assignees { get; set; }
         public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
         {
-
         }
     }
 }

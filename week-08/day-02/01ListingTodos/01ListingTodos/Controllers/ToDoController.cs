@@ -59,7 +59,6 @@ namespace ListingTodos.Controllers
                 IsUrgent = false,
                 IsDone = false,
             };
-
             toDoContextObj.ToDos.Add(toDoToAdd);
             toDoContextObj.SaveChanges();
             return Redirect("/todo/index");
