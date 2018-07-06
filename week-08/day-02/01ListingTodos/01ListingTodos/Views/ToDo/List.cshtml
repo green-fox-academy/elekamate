@@ -27,17 +27,22 @@ else
         </tr>
         @foreach (var xToDo in Model.ToDos)
         {
-            <tr>
-                <td>@xToDo.Id</td>
-                <td>@xToDo.Title</td>
-                <td>@xToDo.IsDone</td>
-                <td>@xToDo.IsUrgent</td>
-                <td>
-                    <form action="DeleteToDo?toDoIDToDelete=@xToDo.Id" method="post">
-                        <input type="submit" value="delete item" />
-                    </form>
-                </td>
-            </tr>
+        <tr>
+            <td>@xToDo.Id</td>
+            <td>@xToDo.Title</td>
+            <td>@xToDo.IsDone</td>
+            <td>@xToDo.IsUrgent</td>
+            <td>
+                <form action="DeleteToDo?toDoIDToDelete=@xToDo.Id" method="post">
+                    <input type="submit" value="Delete" />
+                </form>
+            </td>
+            <td>
+                <form action="/ToDo/@xToDo.Id/EditToDo" method="get">
+                    <input type="submit" value="Edit" />
+                </form>
+            </td>
+        </tr>
         }
     </table> 
 }

@@ -1,24 +1,24 @@
-﻿
+﻿@model ToDo
+
 @{
     ViewData["Title"] = "EditToDo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit ToDo</h2>
-<form action="/" method="post">
+<form action="/ToDo/@Model.Id/EditToDo" method="post">
     <p>Todo Description</p>
-    <input type="text" name="Title" value="false" />
+    <input type="text" name="Title" value="@Model.Title"/>
     <br />
 
     <p>Urgent</p>
-    <input type="checkbox" name="IsUrgent" value="false" />
+    <input type="checkbox" name="IsUrgent" value="@Model.IsUrgent"/>
     <br />
 
     <p>Done</p>
-    <input type="checkbox" name="IsDone" value="false" />
+    <input type="checkbox" name="IsDone" value="@Model.IsDone"/>
     <br />
 
     <input type="submit" value="Submit" />
     <a href="/todo/list"> </a>
 </form>
-

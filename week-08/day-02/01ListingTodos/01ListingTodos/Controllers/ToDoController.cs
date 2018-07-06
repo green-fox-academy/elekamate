@@ -74,6 +74,20 @@ namespace ListingTodos.Controllers
         }
 
         [HttpGet]
+        [Route("ToDo/{toDoIDToEdit}/EditToDo")]
+        public IActionResult EditToDo(long toDoIDToEdit)
+        {
+            return View(toDoContextObj.ToDos.FirstOrDefault(todo => todo.Id == toDoIDToEdit));
+        }
+
+        //[HttpPost]
+        //[Route("/ToDo/{toDoIDToEdit}/EditToDo")]
+        //public void EditToDoPost(long toDoIDToEdit)
+        //{
+        //    Redirect("/ToDo/{toDoToEdit}/EditToDo");
+        //}
+
+        [HttpGet]
         public IActionResult ListToDosOfAssignee()
         {
             return View(toDoServiceObj.GetToDosOfAssignee());
