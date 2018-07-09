@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ListingTodos.Repositories;
-using ListingTodos.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ListingTodos
+namespace WebApplication1
 {
     public class Startup
     {
@@ -24,12 +21,7 @@ namespace ListingTodos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionStringToDoDB = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddMvc();
-            services.AddDbContext<ToDoContext>(options =>
-                options.UseSqlServer(connectionStringToDoDB));
-            services.AddTransient<ToDoContext>();
-            services.AddSingleton<IToDoService, ToDoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,10 +43,7 @@ namespace ListingTodos
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=todo}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "xy",
-                    template: "{controller=todo}/{action=list}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

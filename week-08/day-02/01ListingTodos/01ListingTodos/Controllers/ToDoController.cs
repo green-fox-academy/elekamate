@@ -74,7 +74,7 @@ namespace ListingTodos.Controllers
         }
 
         [HttpGet]
-        [Route("ToDo/{toDoIDToEdit}/EditToDo")]
+        [Route("/ToDo/{toDoIDToEdit}/EditToDo")]
         public IActionResult EditToDo(long toDoIDToEdit)
         {
             return View(toDoContextObj.ToDos.FirstOrDefault(todo => todo.Id == toDoIDToEdit));
