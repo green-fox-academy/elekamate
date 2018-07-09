@@ -10,28 +10,35 @@ namespace E01_Frontend.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet(" ")]
         public IActionResult Index()
         {
-            return View();
+            return File("index.html", "text/html");
         }
 
-        public IActionResult About()
+        [HttpGet("doubling")]
+        public IActionResult Doubling(int? input)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            return (input is null) ?
+                Json(new { error = "Please provide an input!" }) :
+                Json(new { received = input, result = input * 2 });
         }
 
-        public IActionResult Contact()
+        [HttpGet("greeter")]
+        public IActionResult Greeter(string name, string title)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (name is null)
+            {
+                return Json(new { error = "Please provide a name!" });
+            }
+            else if (title is null)
+            {
+                return Json(new { error = "Please provide a title!" });
+            }
+            else
+            {
+                return Json(new { welcome_message = $"Oh, hi there {name}, my dear {title}!" });
+            }
         }
     }
 }
