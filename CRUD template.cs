@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MacrotisExamApp.Repositories
 {
-    public class AttractionRepository
+    public class xRepository
     {
         private ContextName ContextObj;
 
-        public AttractionRepository(ContextName ContextObj)
+        public xRepository(ContextName ContextObj)
         {
             this.ContextObj = ContextObj;
         }
@@ -34,14 +34,14 @@ namespace MacrotisExamApp.Repositories
 
         public void Delete(int id)
         {
-            var removable = GetTodoById(id);
+            var removable = GetItemById(id);
             ContextObj.Remove(removable);
             ContextObj.SaveChanges();
         }
 
-        public tableclass GetTodoById(long id)
+        public tableclass GetItemById(long id)
         {
-            return ContextObj.tableName.ToList().FirstOrDefault(x => x.Id == id);
+            return ContextObj.tableName.ToList().FirstOrDefault(xItem => xItem.Id == id);
         }
     }
 }
