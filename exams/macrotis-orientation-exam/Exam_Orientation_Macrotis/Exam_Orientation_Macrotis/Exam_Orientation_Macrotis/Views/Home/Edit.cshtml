@@ -1,0 +1,29 @@
+﻿@model Attraction
+
+<form action="/edit/@Model.Id" method="post">
+    <p>AttrName</p>
+    <input type="text" name="AttrName" value="@Model.AttrName" required />
+    <br />
+    <p>City</p>
+    <input type="text" name="City" value="@Model.City" required />
+    <br />
+    <p>Price</p>
+    <input type="text" name="Price" value="@Model.Price" required />
+    <br />
+    <p>Longitude</p>
+    <input type="text" name="Longitude" value="@Model.Longitude" required />
+    <br />
+    <p>Lattitude</p>
+    <input type="text" name="Lattitude" value="@Model.Lattitude" required />
+    <br />
+    <p>Category</p>
+    <input type="text" name="Category" value="@Model.Category" required />
+    <br />
+    <p>Duration</p>
+    <input type="text" name="Duration" value="@Model.Duration" required />
+    <br />
+    <p>RecommendedAge</p>
+    <input type="text" name="RecommendedAge" value="@Model.RecommendedAge" required />
+    <br />
+    <input type="submit" value="Elkuldes" />
+</form>

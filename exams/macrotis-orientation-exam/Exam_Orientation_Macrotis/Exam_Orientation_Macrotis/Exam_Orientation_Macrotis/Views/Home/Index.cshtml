@@ -1,0 +1,66 @@
+﻿@model List<Attraction>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Price</th>
+                <th>Longitude</th>
+                <th>Lattitude</th>
+                <th>Cat</th>
+                <th>Duration</th>
+                <th>Recommended age</th>
+            </tr>
+            @foreach (Attraction xAttraction in Model)
+            {
+                <tr>
+                    <td>@xAttraction.AttrName</td>
+                    <td>@xAttraction.City</td>
+                    <td>@xAttraction.Price</td>
+                    <td>@xAttraction.Longitude</td>
+                    <td>@xAttraction.Lattitude</td>
+                    <td>@xAttraction.Category</td>
+                    <td>@xAttraction.Duration</td>
+                    <td>@xAttraction.RecommendedAge</td>
+                </tr>
+            }
+        </table>
+        <form action="/add" method="post">
+            <p>AttrName</p>
+            <input type="text" name="AttrName" value="xx" required/>
+            <br />
+            <p>City</p>
+            <input type="text" name="City" value="x2" required/>
+            <br />
+            <p>Price</p>
+            <input type="text" name="Price" value="5" required/>
+            <br />
+            <p>Longitude</p>
+            <input type="text" name="Longitude" value="4" required/>
+            <br />
+            <p>Lattitude</p>
+            <input type="text" name="Lattitude" value="5" required/>
+            <br />
+            <p>Category</p>
+            <input type="text" name="Category" value="6" required/>
+            <br />
+            <p>Duration</p>
+            <input type="text" name="Duration" value="7" required/>
+            <br />
+            <p>RecommendedAge</p>
+            <input type="text" name="RecommendedAge" value="8" required/>
+            <br />
+            <input type="submit" value="Elkuldes" />
+        </form>
+    </body>
+</html>
