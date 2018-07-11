@@ -8,7 +8,7 @@ namespace WebApplication1.Models
     public class Person
     {
         public int ID { get; set; }
-        public int Name { get; set; }
-        public int Gender { get; set; }
+        public string Name { get; set; }
+        public bool IsMale { get; set; }
     }
 }

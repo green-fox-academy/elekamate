@@ -31,7 +31,9 @@ namespace ListingTodos.Controllers
         [HttpGet]
         public IActionResult List(bool isActive, string searching)
         {
-            IEnumerable<ToDo> filteredToDoDB = (isActive == true) ? toDoContextObj.ToDos.ToList().Where(toDo => toDo.IsDone == false) : toDoContextObj.ToDos.ToList();
+            IEnumerable<ToDo> filteredToDoDB = (isActive == true) ?
+                toDoContextObj.ToDos.ToList().Where(toDo => toDo.IsDone == false) :
+                toDoContextObj.ToDos.ToList();
             if (searching == null)
             {
                 toDoViewModel.ToDos = filteredToDoDB.ToList();

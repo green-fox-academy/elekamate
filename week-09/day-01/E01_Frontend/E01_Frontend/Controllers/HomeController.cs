@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using E01_Frontend.Models;
+using Newtonsoft.Json;
 
 namespace E01_Frontend.Controllers
 {
@@ -39,6 +40,11 @@ namespace E01_Frontend.Controllers
             {
                 return Json(new { welcome_message = $"Oh, hi there {name}, my dear {title}!" });
             }
+        }
+        [HttpPost("arrays")]
+        public IActionResult Arrays(string jsonInput)
+        {
+            return Ok("hi");
         }
     }
 }
