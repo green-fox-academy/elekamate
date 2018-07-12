@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Tricky-average", "01-Tricky-average\01-Tricky-average.csproj", "{7D16E508-B016-4981-BC48-969B67DDD9F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Tricky-average Test", "01-Tricky-average Test\01-Tricky-average Test.csproj", "{2CF4A0DF-5C9E-4EB8-95A0-DEC2A2C8E956}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D16E508-B016-4981-BC48-969B67DDD9F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D16E508-B016-4981-BC48-969B67DDD9F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D16E508-B016-4981-BC48-969B67DDD9F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D16E508-B016-4981-BC48-969B67DDD9F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF4A0DF-5C9E-4EB8-95A0-DEC2A2C8E956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF4A0DF-5C9E-4EB8-95A0-DEC2A2C8E956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF4A0DF-5C9E-4EB8-95A0-DEC2A2C8E956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF4A0DF-5C9E-4EB8-95A0-DEC2A2C8E956}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60962185-5E03-4973-B9EF-0C17189F139F}
+	EndGlobalSection
+EndGlobal

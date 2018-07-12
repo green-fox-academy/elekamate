@@ -1,0 +1,39 @@
+﻿@model SpaceContext
+
+<table>
+    <tr>
+        <th>planet</th>
+        <th>population</th>
+        <th>move</th>
+        <th>ship pop</th>
+    </tr>
+    @foreach (var xPlanet in Model.Planets.ToList())
+    {
+    <tr>
+        <td>@xPlanet.Name</td>
+        <td>@xPlanet.Population</td>
+
+        @if (Model.SpaceShip.ToList()[0].OnPlanet == xPlanet.Id)
+        {
+            <td>
+                <form action="/toplanet/@xPlanet.Id" method="post">
+                    <input type="submit" name="" value="<-" />
+                </form>
+                <form action="/toship/@xPlanet.Id" method="get">
+                    <input type="submit" name="" value="->" />
+                </form>
+            </td>
+            <td>@Model.SpaceShip.ToList()[0].Population</td>
+        }
+        else
+        {
+            <td>
+                <form action="GoToPlanet?id=@xPlanet.Id" method="post">
+                    <input type="submit" value="Go here" />
+                </form>
+            </td>
+            <td>-</td>
+        }
+    </tr>
+    }
+</table>
