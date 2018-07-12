@@ -13,7 +13,7 @@
         <td>@xPlanet.Name</td>
         <td>@xPlanet.Population</td>
 
-        @if (Model.SpaceShip.ToList()[0].OnPlanet == xPlanet.Id)
+        @if (Model.SpaceShip.ToList()[0].OnPlanet.Id == xPlanet.Id)
         {
             <td>
                 <form action="/toplanet/@xPlanet.Id" method="post">

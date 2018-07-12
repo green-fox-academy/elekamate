@@ -78,7 +78,7 @@ namespace Exam_Orientation_Old.Controllers
         public IActionResult GoToPlanet(int id)
         {
             SpaceShip ship = SpaceShipRepositoryObject.GetTodoById(0);
-            ship.OnPlanet = id;
+            //ship.OnPlanet = id;
             SpaceShipRepositoryObject.Update(ship);
             return RedirectToAction("index");
         }
